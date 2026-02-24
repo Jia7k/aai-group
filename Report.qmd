@@ -1,0 +1,68 @@
+---
+title: "Data Visualization: Critique and Redesign"
+author: 
+  - "jia rong"
+  - "Team Member 2"
+  - "Team Member 3"
+date: today
+format: 
+  html:
+    toc: true
+    number-sections: true
+    code-fold: true
+    theme: default
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+# Executive Summary
+This report provides a critical analysis and redesign of a 4-dimensional bubble chart depicting "The Relationship Between Wealth and Happiness." While the original visualization attempts to display GDP per capita, happiness scores, population size, and continent data simultaneously, this multi-dimensional approach results in severe cognitive overload and data occlusion. Our redesign simplifies the visual encodings to reveal the underlying trends with greater accuracy.
+
+# Introduction & Original Visualization
+
+## Context
+The original visualization aims to communicate how global wealth correlates with national happiness. It attempts to plot four distinct dimensions of data into a single 2D space using the following visual encodings:
+1. **Wealth (GDP per capita):** Mapped to the horizontal X-axis (logarithmic scale).
+2. **Happiness Score:** Mapped to the vertical Y-axis.
+3. **Population:** Mapped to the size (area) of the data points.
+4. **Continent:** Mapped to the color of the bubbles.
+
+## Critique of the Original Design
+Packing four variables into a single chart violates several core data visualization principles:
+* **Severe Overplotting and Occlusion:** Massive bubbles representing highly populated countries physically cover up dozens of smaller data points.
+* **The "Area" Perception Problem:** Human visual perception is poor at comparing 2D areas, reducing population data to vague estimations.
+* **High Cognitive Load:** The viewer's brain must simultaneously track the X-axis, Y-axis, estimate area, and match color to a legend.
+* **Misleading Density:** The logarithmic X-axis combined with overlapping bubbles creates a visual "traffic jam" on the right side of the chart.
+
+# Methodology & Improvement Strategy
+
+## Data Preparation
+The initial step involves extracting the original variables (GDP, Happiness, Population, and Continent) and filtering the dataset for missing values.
+
+## Planned Improvements
+To resolve the occlusion and cognitive load issues, our primary strategy is to break the overloaded 4D chart into smaller components using a **Small Multiples** design strategy. This involves creating a grid of individual, aligned scatter plots—one for each continent. 
+
+## Visualization Strategy & Final Design Choices
+* **Chart Type:** Transitioned from a single bubble chart to small multiple scatter plots.
+* **Visual Encodings:** The X and Y axes remain consistent across all plots. Population size is retained as bubble area, but with clutter removed, scaling is easier to interpret. 
+* **Clarity:** Gridlines are softened and the color palette is standardized.
+
+# Final Redesigned Visualization
+
+```{python}
+#| label: fig-redesign
+#| fig-cap: "Data Visualization: Wealth vs. Happiness by Continent"
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# df = pd.read_csv('your_clean_data.csv')
+# sns.set_theme(style="whitegrid")
+# g = sns.FacetGrid(df, col="Continent", col_wrap=3, height=4)
+# g.map(sns.scatterplot, "GDP_per_Capita", "Happiness_Score", size="Population", sizes=(20, 500), alpha=0.7)
+# g.set(xscale="log")
+# g.add_legend()
+# plt.show()

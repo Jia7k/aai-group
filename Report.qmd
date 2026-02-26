@@ -57,6 +57,43 @@ Data will be extracted from the Kaggle dataset, which contains detailed records 
 
 ## Data Preparation
 The initial step involves extracting the original variables (Date, Industry Sector, Layoff Count, and Company) and filtering the dataset for missing values to ensure data quality.
+```{r}
+#| label: data-prep
+#| warning: false
+#| message: false
+
+# Load necessary libraries
+library(tidyverse)
+library(lubridate)
+
+# 1. Load the raw dataset
+layoffs_raw <- read_csv("layoffs_data.csv")
+
+# 2. Clean and transform the data
+layoffs_clean <- layoffs_raw %>%
+  
+  # Convert the 'Date' column from text to actual Date objects
+  mutate(Date = ymd(Date)) %>%
+  
+  # Extract Year and Month into separate columns (useful for aggregating bar charts later)
+  mutate(Year = year(Date),
+         Month = month(Date, label = TRUE, abbr = TRUE)) %>%
+  
+  # Drop administrative/text columns that are not useful for visualization
+  select(-Source, -Date_Added, -List_of_Employees_Laid_Off) %>%
+  
+  # Convert categorical variables into 'factors' for easier plotting in ggplot2
+  mutate(Industry = as.factor(Industry),
+         Country = as.factor(Country),
+         Stage = as.factor(Stage)) %>%
+  
+  # Handle Missing Values: Keep rows where AT LEAST ONE of the metrics is known
+  # (Some companies report percentage laid off, but not the raw count, or vice versa)
+  filter(!is.na(Laid_Off_Count) | !is.na(Percentage))
+
+# 3. View a summary of the cleaned data
+glimpse(layoffs_clean)
+```
 
 ## Visualization Strategy & Final Design Choices
 - **Chart Type:** Transitioned from a single, crowded bubble chart to small multiple scatter plots for each sector.\
@@ -64,19 +101,7 @@ The initial step involves extracting the original variables (Date, Industry Sect
 - **Clarity:** Gridlines are softened and the color palette is standardized  to ensure final result is aesthetically pleasing and professional.
 
 # Final Redesigned Visualization
+```{r}
 
-```{python}
-#| label: fig-redesign
-#| fig-cap: "Data Visualization: Wealth vs. Happiness by Continent"
+```
 
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-# df = pd.read_csv('your_clean_data.csv')
-# sns.set_theme(style="whitegrid")
-# g = sns.FacetGrid(df, col="Continent", col_wrap=3, height=4)
-# g.map(sns.scatterplot, "GDP_per_Capita", "Happiness_Score", size="Population", sizes=(20, 500), alpha=0.7)
-# g.set(xscale="log")
-# g.add_legend()
-# plt.show()

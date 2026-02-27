@@ -18,7 +18,7 @@ execute:
 ---
 
 # Executive Summary
-This report provides a critical analysis and redesign of a 4-dimensional bubble chart depicting "Technical Layoffs Since the Fed Began Raising Interest Rates." While the original visualization attempts to display chronological dates, industry sectors, layoff volume, and sector groupings simultaneously, this multi-dimensional approach results in severe cognitive overload and data occlusion. Our redesign simplifies the visual encodings to reveal the underlying trends with greater accuracy.
+This proposal evaluates the effectiveness of a 4-dimensional bubble chart used to present "Technical Layoffs Since the Fed Began Raising Interest Rates" and recommends a redesigned approach that simplifies the visual elements to reveal underlying trends with greater clarity.
 
 # Introduction & Original Visualization
 ::: {style="text-align: center;"}
@@ -26,11 +26,7 @@ This report provides a critical analysis and redesign of a 4-dimensional bubble 
 :::
 
 ## Context
-The original visualization aims to communicate the timing and scale of tech layoffs following U.S. interest rate hikes. The visualisation tells the industry-wide impact to the Federal Reserve's interest rate hikes, showing how different sectors downsized as borrowing costs rose. It attempts to plot four distinct dimensions of data into a single 2D space using the following visual encodings:\
-1. **Date:** Mapped to the horizontal X-axis (chronological timeline).\
-2. **Industry Sector:** Mapped to the vertical Y-axis (categorical).\
-3. **Scale of Layoffs:** Mapped to the size (area) of the data points.\
-4. **Sector Grouping:** Mapped to the color of the bubbles.
+The visualisation mpas layoff from January 2022 to May 2023 across industry sectors and layoff volume. The x-axis represents chronological progression while the y-axis categorises industry sectors, bubble size indicates the number of employees laid off, and colour differentiates sector groupings. This visualisation was selected because it shows the direct correlation between macroeconomic policy and the stability of the workforce. It demonstrates how the increase in interest rates triggered a contraction in the job market. By showing an increasing scale of layoffs following the raised interest rates, the visualisation aims to highlight the consquences of tighter financial conditions on employment trends.
 
 ## Critique of the Original Design
 

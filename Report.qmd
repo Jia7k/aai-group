@@ -26,7 +26,7 @@ This proposal evaluates the effectiveness of a 4-dimensional bubble chart used t
 :::
 
 ## Context
-The visualisation mpas layoff from January 2022 to May 2023 across industry sectors and layoff volume. The x-axis represents chronological progression while the y-axis categorises industry sectors, bubble size indicates the number of employees laid off, and colour differentiates sector groupings. This visualisation was selected because it shows the direct correlation between macroeconomic policy and the stability of the workforce. It demonstrates how the increase in interest rates triggered a contraction in the job market. By showing an increasing scale of layoffs following the raised interest rates, the visualisation aims to highlight the consquences of tighter financial conditions on employment trends.
+The visualisation maps layoff from January 2022 to May 2023 across industry sectors and layoff volume. The x-axis represents chronological progression while the y-axis categorises industry sectors, bubble size indicates the number of employees laid off, and colour differentiates sector groupings. This visualisation was selected because it shows the direct correlation between macroeconomic policy and the stability of the workforce. It demonstrates how the increase in interest rates triggered a contraction in the job market. The visualization attempts to illustrate the impact of tighter financial conditions on employment patterns by displaying an increasing size of layoffs subsequent to the increased interest rates.
 
 ## Critique of the Original Design
 

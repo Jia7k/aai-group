@@ -107,11 +107,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#data-analysis-plan" id="toc-data-analysis-plan" class="nav-link" data-scroll-target="#data-analysis-plan"><span class="header-section-number">4</span> Data Analysis Plan</a>
   <ul class="collapse">
-  <li><a href="#trend-analysis-of-layoffs-over-time" id="toc-trend-analysis-of-layoffs-over-time" class="nav-link" data-scroll-target="#trend-analysis-of-layoffs-over-time"><span class="header-section-number">4.1</span> Trend Analysis of Layoffs Over Time</a></li>
-  <li><a href="#sector-level-comparison" id="toc-sector-level-comparison" class="nav-link" data-scroll-target="#sector-level-comparison"><span class="header-section-number">4.2</span> Sector-Level Comparison</a></li>
-  <li><a href="#company-level-outlier-detection" id="toc-company-level-outlier-detection" class="nav-link" data-scroll-target="#company-level-outlier-detection"><span class="header-section-number">4.3</span> Company-Level Outlier Detection</a></li>
-  <li><a href="#correlation-exploration" id="toc-correlation-exploration" class="nav-link" data-scroll-target="#correlation-exploration"><span class="header-section-number">4.4</span> Correlation Exploration</a></li>
-  <li><a href="#expected-outcome" id="toc-expected-outcome" class="nav-link" data-scroll-target="#expected-outcome"><span class="header-section-number">4.5</span> Expected Outcome</a></li>
+  <li><a href="#analytical-objectives" id="toc-analytical-objectives" class="nav-link" data-scroll-target="#analytical-objectives"><span class="header-section-number">4.1</span> Analytical Objectives</a>
+  <ul class="collapse">
+  <li><a href="#time-series-aggregation" id="toc-time-series-aggregation" class="nav-link" data-scroll-target="#time-series-aggregation"><span class="header-section-number">4.1.1</span> Time-Series Aggregation</a></li>
+  <li><a href="#industry-level-comparative-analysis" id="toc-industry-level-comparative-analysis" class="nav-link" data-scroll-target="#industry-level-comparative-analysis"><span class="header-section-number">4.1.2</span> Industry-Level Comparative Analysis</a></li>
+  <li><a href="#company-stage-analysis" id="toc-company-stage-analysis" class="nav-link" data-scroll-target="#company-stage-analysis"><span class="header-section-number">4.1.3</span> Company Stage Analysis</a></li>
+  <li><a href="#exploratory-correlation-analysis" id="toc-exploratory-correlation-analysis" class="nav-link" data-scroll-target="#exploratory-correlation-analysis"><span class="header-section-number">4.1.4</span> Exploratory Correlation Analysis</a></li>
+  </ul></li>
+  <li><a href="#expected-outcome" id="toc-expected-outcome" class="nav-link" data-scroll-target="#expected-outcome"><span class="header-section-number">4.2</span> Expected Outcome</a></li>
   </ul></li>
   <li><a href="#planned-work-distribution" id="toc-planned-work-distribution" class="nav-link" data-scroll-target="#planned-work-distribution"><span class="header-section-number">5</span> Planned Work Distribution</a></li>
   </ul>
@@ -274,59 +277,75 @@ $ Month          &lt;ord&gt; Jun, Jun, Jun, Jun, Jun, Jun, Jun, May, May, May, M
 </section>
 <section id="data-analysis-plan" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Data Analysis Plan</h1>
-<p>To complement our redesigned visualization, we plan to conduct a set of basic exploratory data analyses that strengthen the narrative around how interest rate hike influenced layoffs across the tech sector.</p>
-<p>The analyses will focus on uncovering relationships, identifying temporal patterns and validating whether the layoffs observed in the original visualization reflect broader structural changes in the industry. The planned analyses include:</p>
-<section id="trend-analysis-of-layoffs-over-time" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="trend-analysis-of-layoffs-over-time"><span class="header-section-number">4.1</span> Trend Analysis of Layoffs Over Time</h2>
-<p>We will compute monthly aggregated layoff counts to examine how the volume of job cuts evolved from 2022 to 2023. This analysis will support our redesigned chart by providing evidence-based context for the observed patterns. This will also help to answer some of the following questions:</p>
+<p>To complement our redesigned visualization, we plan to conduct a set of exploratory data analyses that strengthen the narrative around how interest rate hike influenced layoffs across the tech sector.</p>
+<p>The purpose of this analysis is to move beyond descriptive visualization and provide quantitative evidence that supports the patterns observed in both the original and improved visualizations. The planned analyses include:</p>
+<section id="analytical-objectives" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="analytical-objectives"><span class="header-section-number">4.1</span> Analytical Objectives</h2>
+<p>The analysis will be guided by the following objectives which align with the overall project goal of evaluating how macroeconomic policy may have influenced workforce stability within the technology sector:</p>
 <ul>
-<li>When did layoffs begin accelerating?<br>
+<li><strong>To examine temporal trends in layoff activity</strong> and determine whether there is a significant escalation in layoff volume following the interest rate increases in 2022.<br>
 </li>
-<li>Did layoff intensity spike immediately after the interest rate increases?<br>
+<li><strong>To identify which industries were disproportionately affected</strong>, in terms of both frequency of layoff events and total employees laid off.<br>
 </li>
-<li>Were there sustained or repeated waves of downsizing?</li>
+<li><strong>To compare layoff magnitude across company stages</strong>, such as Post-IPO firms versus earlier-stage startups.<br>
+</li>
+<li><strong>To explore the relationship between funding levels and layoff behaviour</strong>, particularly whether companies that raised more capital exhibited different layoff patterns.</li>
 </ul>
+<section id="time-series-aggregation" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="time-series-aggregation"><span class="header-section-number">4.1.1</span> Time-Series Aggregation</h3>
+<p>The first analysis we plan to conduct is the aggregation of layoff data on a monthly basis to compute:</p>
+<ul>
+<li>Total number of employees laid off per month<br>
+</li>
+<li>Number of layoff announcements per month</li>
+</ul>
+<p>This will allow us to compare layoff patterns before and after the onset of interest rate hikes. The results will provide empirical support for the narrative presented in the visualization.</p>
 </section>
-<section id="sector-level-comparison" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="sector-level-comparison"><span class="header-section-number">4.2</span> Sector-Level Comparison</h2>
-<p>In order to illustrate which sectors were disproportionately affected and whether some sectors were more sensitive to rising interest rates, we will calculate the following for each industry category:</p>
+<section id="industry-level-comparative-analysis" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="industry-level-comparative-analysis"><span class="header-section-number">4.1.2</span> Industry-Level Comparative Analysis</h3>
+<p>Next, industry categories will be analysed to determine:</p>
 <ul>
-<li>total layoffs<br>
+<li>Total layoffs by industry<br>
 </li>
-<li>percentage proportion of total layoffs<br>
+<li>Average layoffs per event<br>
 </li>
-<li>relative severity measured as layoffs per company</li>
+<li>Relative frequency of layoff announcements</li>
 </ul>
+<p>This analysis will reveal whether certain sectors experienced structural vulnerability or whether layoffs were evenly distributed across industries.</p>
 </section>
-<section id="company-level-outlier-detection" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="company-level-outlier-detection"><span class="header-section-number">4.3</span> Company-Level Outlier Detection</h2>
-<p>We will identify companies with layoff counts that significantly exceed sector norms with the following techniques:</p>
+<section id="company-stage-analysis" class="level3" data-number="4.1.3">
+<h3 data-number="4.1.3" class="anchored" data-anchor-id="company-stage-analysis"><span class="header-section-number">4.1.3</span> Company Stage Analysis</h3>
+<p>Using the <code>Stage</code> variable, we would like to compare layoff behaviour across company maturity levels. Specifically, we will examine:</p>
 <ul>
-<li>z‑scores<br>
+<li>Mean layoff count per stage<br>
 </li>
-<li>interquartile range (IQR)</li>
+<li>Distribution of layoff percentages</li>
 </ul>
-<p>These techniques can help detect statistical outliers and provide insights into whether the largest layoffs were isolated events or part of a wider systemic trend.</p>
+<p>This comparison may highlight whether publicly listed firms or venture-backed startups responded differently to tightening financial conditions.</p>
 </section>
-<section id="correlation-exploration" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="correlation-exploration"><span class="header-section-number">4.4</span> Correlation Exploration</h2>
-<p>We would also like to explore the:</p>
+<section id="exploratory-correlation-analysis" class="level3" data-number="4.1.4">
+<h3 data-number="4.1.4" class="anchored" data-anchor-id="exploratory-correlation-analysis"><span class="header-section-number">4.1.4</span> Exploratory Correlation Analysis</h3>
+<p>We will conduct an exploration of the relationship between:</p>
 <ul>
-<li>correlation between company size (total employees) and layoff volumes<br>
+<li>Funds raised<br>
 </li>
-<li>correlation between funding stage and layoff severity (for startups)</li>
+<li>Layoff count<br>
+</li>
+<li>Percentage of workforce laid off</li>
 </ul>
-<p>These analyses can further support our improved visualizations by revealing structural drivers of layoffs beyond just interest rates.</p>
+<p>Scatterplots and simple correlation measures will be used to investigate potential associations. Our aim is to uncover patterns that may inform the improved visualization design.</p>
 </section>
-<section id="expected-outcome" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="expected-outcome"><span class="header-section-number">4.5</span> Expected Outcome</h2>
-<p>Through these analyses, we aim to develop supporting insights that:</p>
+</section>
+<section id="expected-outcome" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="expected-outcome"><span class="header-section-number">4.2</span> Expected Outcome</h2>
+<p>We believe that the planned analysis will help our team to :</p>
 <ul>
-<li>explain why certain months and sectors experienced heavier layoffs,</li>
-<li>demonstrate data-driven reasoning behind our redesigned chart choices, and</li>
-<li>strengthen the narrative linking economic pressure to employment outcomes.</li>
+<li>Provide quantitative validation for trends observed visually.<br>
+</li>
+<li>Strengthen the interpretability and credibility of the redesigned visualization.<br>
+</li>
+<li>Improve storytelling beyond the limitations of the original bubble chart.</li>
 </ul>
-<p>This analysis will not be overly complex, but it will enhance the rigor and depth of the final visualization.</p>
 </section>
 </section>
 <section id="planned-work-distribution" class="level1" data-number="5">
@@ -345,23 +364,23 @@ $ Month          &lt;ord&gt; Jun, Jun, Jun, Jun, Jun, Jun, Jun, May, May, May, M
 <tbody>
 <tr class="odd">
 <td>Alyssa Kwek Li Yun</td>
-<td>Introduce and explain the original visualization; refine executive summary and context.</td>
+<td>- Articulate the story behind the selected visualization.<br>- Assist in designing the improved visualization layout and structure.</td>
 </tr>
 <tr class="even">
 <td>Teo Xue Ling Sharlene</td>
-<td>Critically evaluate strengths and weaknesses of the original visualization.</td>
+<td>- Identify strengths and weaknesses of the selected visualization.<br>- Assist in designing the improved visualization layout and structure.</td>
 </tr>
 <tr class="odd">
 <td>Woo Wei Qin</td>
-<td>Propose and justify visualization improvements; redesign conceptual direction.</td>
+<td>- Assist in designing the improved visualization layout and structure.<br>- Conduct exploratory data analysis.</td>
 </tr>
 <tr class="even">
 <td>Liew Jia Rong</td>
-<td>Identify and document data sources; lead data engineering pipeline (cleaning, transformation).</td>
+<td>- Clean, transform and prepare the dataset for visualization.<br>- Conduct exploratory data analysis.</td>
 </tr>
 <tr class="odd">
 <td>Su Myat Nhwe</td>
-<td>Develop the optional data analysis plan and draft supporting insights; write the planned work distribution section.</td>
+<td>- Identify trends that validate or challenge the visual narrative.<br> Conduct exploratory data analysis.</td>
 </tr>
 </tbody>
 </table>

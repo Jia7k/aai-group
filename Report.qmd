@@ -99,57 +99,69 @@ glimpse(layoffs_clean)
 - **Clarity:** Gridlines are softened and the color palette is standardized  to ensure final result is aesthetically pleasing and professional.
 
 # Data Analysis Plan
-To complement our redesigned visualization, we plan to conduct a set of basic exploratory data analyses that strengthen the narrative around how interest rate hike influenced layoffs across the tech sector.
+To complement our redesigned visualization, we plan to conduct a set of exploratory data analyses that strengthen the narrative around how interest rate hike influenced layoffs across the tech sector.
 
-The analyses will focus on uncovering relationships, identifying temporal patterns and validating whether the layoffs observed in the original visualization reflect broader structural changes in the industry. The planned analyses include:
+The purpose of this analysis is to move beyond descriptive visualization and provide quantitative evidence that supports the patterns observed in both the original and improved visualizations. The planned analyses include:
 
-## Trend Analysis of Layoffs Over Time
-We will compute monthly aggregated layoff counts to examine how the volume of job cuts evolved from 2022 to 2023. This analysis will support our redesigned chart by providing evidence-based context for the observed patterns. This will also help to answer some of the following questions:
+## Analytical Objectives
 
-- When did layoffs begin accelerating?\
-- Did layoff intensity spike immediately after the interest rate increases?\
-- Were there sustained or repeated waves of downsizing?
+The analysis will be guided by the following objectives which align with the overall project goal of evaluating how macroeconomic policy may have influenced workforce stability within the technology sector:
 
-## Sector-Level Comparison
-In order to illustrate which sectors were disproportionately affected and whether some sectors were more sensitive to rising interest rates, we will calculate the following for each industry category:
+- **To examine temporal trends in layoff activity** and determine whether there is a significant escalation in layoff volume following the interest rate increases in 2022.\
+- **To identify which industries were disproportionately affected**, in terms of both frequency of layoff events and total employees laid off.\
+- **To compare layoff magnitude across company stages**, such as Post-IPO firms versus earlier-stage startups.\
+- **To explore the relationship between funding levels and layoff behaviour**, particularly whether companies that raised more capital exhibited different layoff patterns.
 
-- total layoffs\
-- percentage proportion of total layoffs\
-- relative severity measured as layoffs per company
+### Time-Series Aggregation
 
-## Company-Level Outlier Detection
-We will identify companies with layoff counts that significantly exceed sector norms with the following techniques:
+The first analysis we plan to conduct is the aggregation of layoff data on a monthly basis to compute:
 
-- z‑scores\
-- interquartile range (IQR)
+- Total number of employees laid off per month\
+- Number of layoff announcements per month
 
-These techniques can help detect statistical outliers and provide insights into whether the largest layoffs were isolated events or part of a wider systemic trend.
+This will allow us to compare layoff patterns before and after the onset of interest rate hikes. The results will provide empirical support for the narrative presented in the visualization.
 
-## Correlation Exploration
-We would also like to explore the:
+### Industry-Level Comparative Analysis
+Next, industry categories will be analysed to determine:
 
-- correlation between company size (total employees) and layoff volumes\
-- correlation between funding stage and layoff severity (for startups)
+- Total layoffs by industry\
+- Average layoffs per event\
+- Relative frequency of layoff announcements
 
-These analyses can further support our improved visualizations by revealing structural drivers of layoffs beyond just interest rates.
+This analysis will reveal whether certain sectors experienced structural vulnerability or whether layoffs were evenly distributed across industries.
+
+### Company Stage Analysis
+Using the `Stage` variable, we would like to compare layoff behaviour across company maturity levels. Specifically, we will examine:
+
+- Mean layoff count per stage\
+- Distribution of layoff percentages
+
+This comparison may highlight whether publicly listed firms or venture-backed startups responded differently to tightening financial conditions.
+
+### Exploratory Correlation Analysis
+We will conduct an exploration of the relationship between:
+
+- Funds raised\
+- Layoff count\
+- Percentage of workforce laid off
+
+Scatterplots and simple correlation measures will be used to investigate potential associations. Our aim is to uncover patterns that may inform the improved visualization design.
 
 ## Expected Outcome
-Through these analyses, we aim to develop supporting insights that:
+We believe that the planned analysis will help our team to :
 
-- explain why certain months and sectors experienced heavier layoffs,
-- demonstrate data-driven reasoning behind our redesigned chart choices, and
-- strengthen the narrative linking economic pressure to employment outcomes.
-
-This analysis will not be overly complex, but it will enhance the rigor and depth of the final visualization.
+- Provide quantitative validation for trends observed visually.\
+- Strengthen the interpretability and credibility of the redesigned visualization.\
+- Improve storytelling beyond the limitations of the original bubble chart.
 
 # Planned Work Distribution
 
 | Team Member | Responsibility |
 |----------|---------------|
-| Alyssa Kwek Li Yun | Introduce and explain the original visualization; refine executive summary and context. |
-| Teo Xue Ling Sharlene | Critically evaluate strengths and weaknesses of the original visualization. |
-| Woo Wei Qin | Propose and justify visualization improvements; redesign conceptual direction. |
-| Liew Jia Rong | Identify and document data sources; lead data engineering pipeline (cleaning, transformation). |
-| Su Myat Nhwe | Develop the optional data analysis plan and draft supporting insights; write the planned work distribution section. |
+| Alyssa Kwek Li Yun | - Articulate the story behind the selected visualization.<br>- Assist in designing the improved visualization layout and structure. |
+| Teo Xue Ling Sharlene | - Identify strengths and weaknesses of the selected visualization.<br>- Assist in designing the improved visualization layout and structure. |
+| Woo Wei Qin | - Assist in designing the improved visualization layout and structure.<br>- Conduct exploratory data analysis. |
+| Liew Jia Rong | - Clean, transform and prepare the dataset for visualization.<br>- Conduct exploratory data analysis. |
+| Su Myat Nhwe | - Identify trends that validate or challenge the visual narrative.<br> Conduct exploratory data analysis. |
 
 

@@ -1,9 +1,11 @@
 ---
 title: "Data Visualization: Critique and Redesign"
 author: 
-  - "jia rong"
-  - "Team Member 2"
-  - "Team Member 3"
+  - "Liew Jia Rong (2501090)"
+  - "Alyssa Kwek Li Yun (2403480)"
+  - "Su Myat Nhwe (2403062)"
+  - "Woo Wei Qin (2402934)"
+  - "Teo Xue Ling Sharlene (2503489)"
 date: today
 format: 
   html:

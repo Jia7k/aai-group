@@ -98,8 +98,58 @@ glimpse(layoffs_clean)
 - **Visual Encodings:** The X and Y axes remain consistent across all plots. Bubble size is retained for layoff volume, but with clutter removed, scaling is easier to interpret.\
 - **Clarity:** Gridlines are softened and the color palette is standardized  to ensure final result is aesthetically pleasing and professional.
 
-# Final Redesigned Visualization
-```{r}
+# Data Analysis Plan
+To complement our redesigned visualization, we plan to conduct a set of basic exploratory data analyses that strengthen the narrative around how interest rate hike influenced layoffs across the tech sector.
 
-```
+The analyses will focus on uncovering relationships, identifying temporal patterns and validating whether the layoffs observed in the original visualization reflect broader structural changes in the industry. The planned analyses include:
+
+## Trend Analysis of Layoffs Over Time
+We will compute monthly aggregated layoff counts to examine how the volume of job cuts evolved from 2022 to 2023. This analysis will support our redesigned chart by providing evidence-based context for the observed patterns. This will also help to answer some of the following questions:
+
+- When did layoffs begin accelerating?\
+- Did layoff intensity spike immediately after the interest rate increases?\
+- Were there sustained or repeated waves of downsizing?
+
+## Sector-Level Comparison
+In order to illustrate which sectors were disproportionately affected and whether some sectors were more sensitive to rising interest rates, we will calculate the following for each industry category:
+
+- total layoffs\
+- percentage proportion of total layoffs\
+- relative severity measured as layoffs per company
+
+## Company-Level Outlier Detection
+We will identify companies with layoff counts that significantly exceed sector norms with the following techniques:
+
+- z‑scores\
+- interquartile range (IQR)
+
+These techniques can help detect statistical outliers and provide insights into whether the largest layoffs were isolated events or part of a wider systemic trend.
+
+## Correlation Exploration
+We would also like to explore the:
+
+- correlation between company size (total employees) and layoff volumes\
+- correlation between funding stage and layoff severity (for startups)
+
+These analyses can further support our improved visualizations by revealing structural drivers of layoffs beyond just interest rates.
+
+## Expected Outcome
+Through these analyses, we aim to develop supporting insights that:
+
+- explain why certain months and sectors experienced heavier layoffs,
+- demonstrate data-driven reasoning behind our redesigned chart choices, and
+- strengthen the narrative linking economic pressure to employment outcomes.
+
+This analysis will not be overly complex, but it will enhance the rigor and depth of the final visualization.
+
+# Planned Work Distribution
+
+| Team Member | Responsibility |
+|----------|---------------|
+| Alyssa Kwek Li Yun | Introduce and explain the original visualization; refine executive summary and context. |
+| Teo Xue Ling Sharlene | Critically evaluate strengths and weaknesses of the original visualization. |
+| Woo Wei Qin | Propose and justify visualization improvements; redesign conceptual direction. |
+| Liew Jia Rong | Identify and document data sources; lead data engineering pipeline (cleaning, transformation). |
+| Su Myat Nhwe | Develop the optional data analysis plan and draft supporting insights; write the planned work distribution section. |
+
 

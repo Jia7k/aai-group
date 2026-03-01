@@ -46,7 +46,40 @@ Packing four variables into a single chart violates several core data visualizat
 # Methodology & Improvement Strategy
 
 ## Planned Improvements
-To resolve the occlusion and cognitive load issues, our primary strategy is to break the overloaded 4D chart into smaller components using a **Small Multiples** design strategy. This involves creating a grid of individual, aligned scatter plots categorised by major sector groupings. 
+The identified weaknesses in the original visualization directly inform our redesign strategy. Each improvement below is mapped to a specific critique to ensure our changes are purposeful 
+and evidence-based.
+
+### 1. Small Multiples to Resolve Overplotting and Occlusion
+**Weakness addressed:** Severe overplotting and occlusion; misleading density in crowded sectors.
+
+The most critical flaw in the original chart is that large bubbles (e.g., Meta, Amazon) physically obscure dozens of smaller layoff events occurring in the same time window. Our primary redesign strategy is to adopt a **Small Multiples** layout — a grid of individual, aligned scatter plots, one per major industry sector. 
+
+By separating each sector into its own panel, every layoff event becomes visible and individually legible. Axes are kept consistent across all panels, allowing meaningful cross-sector comparison while eliminating occlusion entirely. This approach follows Tufte's principle of maximising the data-ink ratio by removing visual clutter without losing any information.
+
+### 2. Replacing Raw Bubble Size with a Clearer Visual Encoding
+**Weakness addressed:** The "Area" Perception Problem.
+
+Human perception is known to be poor at accurately comparing 2D areas (Cleveland & McGill, 1984). In the original chart, viewers must estimate and compare bubble sizes to understand the scale of layoffs — a cognitively unreliable task, especially when bubbles overlap. 
+
+Within each Small Multiples panel, we will retain bubble size as a secondary encoding for layoff count, but supplement it with a **colour gradient scaled to layoff magnitude** (lighter = smaller layoff, darker = larger layoff). This dual encoding (size + colour intensity) gives viewers two independent perceptual cues for the same variable, improving accuracy of magnitude judgements. A shared, clearly labelled legend will accompany all panels.
+
+### 3. Reducing Cognitive Load through Layout and Annotation
+**Weakness addressed:** High cognitive load from tracking four variables simultaneously.
+
+The original chart forces the viewer to cross-reference the Y-axis label, the X-axis timeline, the bubble size, and the colour legend all at once. Our redesign reduces this burden in two ways:
+- **Panel titles** replace the need to read the Y-axis for every data point — each 
+  sector panel is self-labelled.
+- **Annotation of key events** (e.g., Fed rate hike dates marked with a vertical reference 
+  line) will be added to contextualise the temporal narrative directly on the chart, 
+  removing the need for the viewer to recall external context.
+
+This results in a more guided, lower-effort reading experience that still preserves the full analytical depth of the original.
+
+### 4. Standardised, Accessible Colour Palette
+
+**Weakness addressed:** The original uses high-saturation neon colours on a black background, which is visually striking but reduces accessibility for colour-vision-deficient viewers and creates perceptual interference between adjacent bubbles.
+
+We will replace the original palette with a **standardised, perceptually uniform colour scheme** (e.g., using ColorBrewer-compatible palettes available in `ggplot2`). Each sector panel will use a consistent base colour, with intensity encoding layoff magnitude as described above. A white or light grey background will replace the black backdrop to improve contrast and readability in both screen and print contexts.
 
 ## Data Source
 - **Primary Source:** https://www.kaggle.com/datasets/theakhilb/layoffs-data-2022 \

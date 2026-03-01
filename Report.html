@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -72,10 +72,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="Report_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="Report_files/libs/quarto-html/anchor.min.js"></script>
 <link href="Report_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="Report_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="Report_files/libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="Report_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="Report_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="Report_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="Report_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -100,7 +100,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#methodology-improvement-strategy" id="toc-methodology-improvement-strategy" class="nav-link" data-scroll-target="#methodology-improvement-strategy"><span class="header-section-number">3</span> Methodology &amp; Improvement Strategy</a>
   <ul class="collapse">
-  <li><a href="#planned-improvements" id="toc-planned-improvements" class="nav-link" data-scroll-target="#planned-improvements"><span class="header-section-number">3.1</span> Planned Improvements</a></li>
+  <li><a href="#planned-improvements" id="toc-planned-improvements" class="nav-link" data-scroll-target="#planned-improvements"><span class="header-section-number">3.1</span> Planned Improvements</a>
+  <ul class="collapse">
+  <li><a href="#small-multiples-to-resolve-overplotting-and-occlusion" id="toc-small-multiples-to-resolve-overplotting-and-occlusion" class="nav-link" data-scroll-target="#small-multiples-to-resolve-overplotting-and-occlusion"><span class="header-section-number">3.1.1</span> 1. Small Multiples to Resolve Overplotting and Occlusion</a></li>
+  <li><a href="#replacing-raw-bubble-size-with-a-clearer-visual-encoding" id="toc-replacing-raw-bubble-size-with-a-clearer-visual-encoding" class="nav-link" data-scroll-target="#replacing-raw-bubble-size-with-a-clearer-visual-encoding"><span class="header-section-number">3.1.2</span> 2. Replacing Raw Bubble Size with a Clearer Visual Encoding</a></li>
+  <li><a href="#reducing-cognitive-load-through-layout-and-annotation" id="toc-reducing-cognitive-load-through-layout-and-annotation" class="nav-link" data-scroll-target="#reducing-cognitive-load-through-layout-and-annotation"><span class="header-section-number">3.1.3</span> 3. Reducing Cognitive Load through Layout and Annotation</a></li>
+  <li><a href="#standardised-accessible-colour-palette" id="toc-standardised-accessible-colour-palette" class="nav-link" data-scroll-target="#standardised-accessible-colour-palette"><span class="header-section-number">3.1.4</span> 4. Standardised, Accessible Colour Palette</a></li>
+  </ul></li>
   <li><a href="#data-source" id="toc-data-source" class="nav-link" data-scroll-target="#data-source"><span class="header-section-number">3.2</span> Data Source</a></li>
   <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation"><span class="header-section-number">3.3</span> Data Preparation</a></li>
   <li><a href="#visualization-strategy-final-design-choices" id="toc-visualization-strategy-final-design-choices" class="nav-link" data-scroll-target="#visualization-strategy-final-design-choices"><span class="header-section-number">3.4</span> Visualization Strategy &amp; Final Design Choices</a></li>
@@ -200,7 +206,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1 data-number="3"><span class="header-section-number">3</span> Methodology &amp; Improvement Strategy</h1>
 <section id="planned-improvements" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="planned-improvements"><span class="header-section-number">3.1</span> Planned Improvements</h2>
-<p>To resolve the occlusion and cognitive load issues, our primary strategy is to break the overloaded 4D chart into smaller components using a <strong>Small Multiples</strong> design strategy. This involves creating a grid of individual, aligned scatter plots categorised by major sector groupings.</p>
+<p>The identified weaknesses in the original visualization directly inform our redesign strategy. Each improvement below is mapped to a specific critique to ensure our changes are purposeful and evidence-based.</p>
+<section id="small-multiples-to-resolve-overplotting-and-occlusion" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="small-multiples-to-resolve-overplotting-and-occlusion"><span class="header-section-number">3.1.1</span> 1. Small Multiples to Resolve Overplotting and Occlusion</h3>
+<p><strong>Weakness addressed:</strong> Severe overplotting and occlusion; misleading density in crowded sectors.</p>
+<p>The most critical flaw in the original chart is that large bubbles (e.g., Meta, Amazon) physically obscure dozens of smaller layoff events occurring in the same time window. Our primary redesign strategy is to adopt a <strong>Small Multiples</strong> layout — a grid of individual, aligned scatter plots, one per major industry sector.</p>
+<p>By separating each sector into its own panel, every layoff event becomes visible and individually legible. Axes are kept consistent across all panels, allowing meaningful cross-sector comparison while eliminating occlusion entirely. This approach follows Tufte’s principle of maximising the data-ink ratio by removing visual clutter without losing any information.</p>
+</section>
+<section id="replacing-raw-bubble-size-with-a-clearer-visual-encoding" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="replacing-raw-bubble-size-with-a-clearer-visual-encoding"><span class="header-section-number">3.1.2</span> 2. Replacing Raw Bubble Size with a Clearer Visual Encoding</h3>
+<p><strong>Weakness addressed:</strong> The “Area” Perception Problem.</p>
+<p>Human perception is known to be poor at accurately comparing 2D areas (Cleveland &amp; McGill, 1984). In the original chart, viewers must estimate and compare bubble sizes to understand the scale of layoffs — a cognitively unreliable task, especially when bubbles overlap.</p>
+<p>Within each Small Multiples panel, we will retain bubble size as a secondary encoding for layoff count, but supplement it with a <strong>colour gradient scaled to layoff magnitude</strong> (lighter = smaller layoff, darker = larger layoff). This dual encoding (size + colour intensity) gives viewers two independent perceptual cues for the same variable, improving accuracy of magnitude judgements. A shared, clearly labelled legend will accompany all panels.</p>
+</section>
+<section id="reducing-cognitive-load-through-layout-and-annotation" class="level3" data-number="3.1.3">
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="reducing-cognitive-load-through-layout-and-annotation"><span class="header-section-number">3.1.3</span> 3. Reducing Cognitive Load through Layout and Annotation</h3>
+<p><strong>Weakness addressed:</strong> High cognitive load from tracking four variables simultaneously.</p>
+<p>The original chart forces the viewer to cross-reference the Y-axis label, the X-axis timeline, the bubble size, and the colour legend all at once. Our redesign reduces this burden in two ways: - <strong>Panel titles</strong> replace the need to read the Y-axis for every data point — each sector panel is self-labelled. - <strong>Annotation of key events</strong> (e.g., Fed rate hike dates marked with a vertical reference line) will be added to contextualise the temporal narrative directly on the chart, removing the need for the viewer to recall external context.</p>
+<p>This results in a more guided, lower-effort reading experience that still preserves the full analytical depth of the original.</p>
+</section>
+<section id="standardised-accessible-colour-palette" class="level3" data-number="3.1.4">
+<h3 data-number="3.1.4" class="anchored" data-anchor-id="standardised-accessible-colour-palette"><span class="header-section-number">3.1.4</span> 4. Standardised, Accessible Colour Palette</h3>
+<p><strong>Weakness addressed:</strong> The original uses high-saturation neon colours on a black background, which is visually striking but reduces accessibility for colour-vision-deficient viewers and creates perceptual interference between adjacent bubbles.</p>
+<p>We will replace the original palette with a <strong>standardised, perceptually uniform colour scheme</strong> (e.g., using ColorBrewer-compatible palettes available in <code>ggplot2</code>). Each sector panel will use a consistent base colour, with intensity encoding layoff magnitude as described above. A white or light grey background will replace the black backdrop to improve contrast and readability in both screen and print contexts.</p>
+</section>
 </section>
 <section id="data-source" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="data-source"><span class="header-section-number">3.2</span> Data Source</h2>

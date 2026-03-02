@@ -200,17 +200,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Packing four variables into a single chart violates several core data visualization principles:<br>
 </p>
 <ul>
-<li><strong>Severe Overplotting and Occlusion:</strong> The large number of overlapping bubbles, particularly during peak periods and in sectors like Big Tech and Retail, makes the chart appear crowded. Larger bubbles frequently obscure smaller ones, which hides important data points and reduces overall clarity.<br>
+<li><strong>Severe Overplotting and Occlusion:</strong> The large number of overlapping bubbles makes the chart appear cluttered, particularly during peak periods in sectors like Big Tech and Retail. Larger bubbles frequently obscure smaller ones, hiding important data points. Because all industries are displayed in a single space, it creates misleading density, making it incredibly difficult to compare trends within industries or clearly observe patterns for any specific sector over time.<br>
 </li>
-<li><strong>Inaccurate Perception of Bubble Size:</strong> Human perception is not well suited for comparing differences in area. As a result, it is difficult for viewers to accurately judge the scale of layoffs, particularly when bubbles overlap or are similar in size.<br>
+<li><strong>The “Area” Perception Problem:</strong> Human perception is not well-suited for comparing differences in area, making it difficult to accurately judge the scale of layoffs when bubbles overlap or are similar in size. This flaw is compounded by a missing size legend and limited precision. Since exact layoff numbers are not immediately visible, viewers cannot easily perform quantitative analysis.<br>
 </li>
-<li><strong>Missing Size Legend:</strong> Although larger bubbles clearly represent larger layoffs, the chart does not include a size legend. Without a reference, viewers cannot estimate the actual number of employees affected, reducing the chart’s usefulness for quantitative interpretation.<br>
+<li><strong>High Cognitive Load:</strong> Viewers must interpret multiple visual encodings at the same time, including position, size, color, and timeline. This increases the effort required to parse the chart and extract meaningful insights.<br>
 </li>
-<li><strong>Limited Precision:</strong> Exact layoff numbers are not immediately visible unless labels are added, which makes it difficult for users who needs precise data for analysis.<br>
-</li>
-<li><strong>High Cognitive Load:</strong> Viewers must interpret multiple visual encodings at the same time, including position, size, color, and timeline. This increases the effort required to understand the information.<br>
-</li>
-<li><strong>Difficult to Compare Trends within Industries:</strong> All industries are displayed in a single space, it is challenging to clearly observe patterns or changes over time for any specific industry.</li>
+<li><strong>Poor Color Accessibility:</strong> The original uses high-saturation neon colours on a black background. While visually striking, it reduces accessibility for colour-vision-deficient viewers and creates perceptual interference between adjacent, overlapping bubbles, further complicating readability.</li>
 </ul>
 </section>
 </section>

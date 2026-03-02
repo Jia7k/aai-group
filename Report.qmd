@@ -33,15 +33,20 @@ The visualisation maps layoff from January 2022 to May 2023 across industry sect
 ## Critique of the Original Design
 
 ### Strengths
-- **Comprehensive Data Representation:** The visualisation provides a comprehensive, chronological view of layoffs across multiple sectors, allowing for a broad understanding of the impact of interest rate hikes.\
-- **Use of Size:** Different bubble sizes effectively indicate the scale of layoffs, giving a quick visual cue about the magnitude of job losses in each sector.\
+- **Comprehensive Data Representation:** The visualisation presents layoffs across multiple sectors in a clear timeline, allowing viewers to understand when layoffs occurred and how different industries were affected by the interest rate hikes.\
+- **Effective Use of Size:** The variation of bubble sizes effectively indicates the scale of layoffs, giving a quick visual cue about the magnitude of job losses in each sector. Larger bubbles naturally draw the attention, making it easier to identify major layoff events at a glance.\
+- **Strategic Labeling:** By labeling only the most prominent companies like Meta and Amazon, it provides immediate context for massive layoffs while preventing text clutter.\
+- **Clear Chronological Structure:** The timeline effectively maps the progression of layoffs, highlighting peak periods and allowing viewers to easily correlate job losses with rising interest rates.
 
 ### Weaknesses
-Packing four variables into a single chart violates several core data visualization principles:\
-- **Severe Overplotting and Occlusion:** Massive bubbles representing companies physically cover up dozens of smaller layoff events in the same time period.\
-- **The "Area" Perception Problem:** Human visual perception is poor at comparing 2D areas, making it difficult to differentiate the scale of layoffs between overlapping bubbles.\
-- **High Cognitive Load:** The viewer's brain must simultaneously track the timeline, find the specific industry on the Y-axis, estimate the bubble area, and match color to a legend.\
-- **Misleading Density:** The volume of overlapping circles in sections like "Big Tech" and "Retail" obscures the individual data points and specific dates.
+Packing four variables into a single chart violates several core data visualization principles: \
+
+- **Severe Overplotting and Occlusion:** The large number of overlapping bubbles, particularly during peak periods and in sectors like Big Tech and Retail, makes the chart appear crowded. Larger bubbles frequently obscure smaller ones, which hides important data points and reduces overall clarity.\
+- **Inaccurate Perception of Bubble Size:** Human perception is not well suited for comparing differences in area. As a result, it is difficult for viewers to accurately judge the scale of layoffs, particularly when bubbles overlap or are similar in size.\
+- **Missing Size Legend:** Although larger bubbles clearly represent larger layoffs, the chart does not include a size legend. Without a reference, viewers cannot estimate the actual number of employees affected, reducing the chart’s usefulness for quantitative interpretation.\
+- **Limited Precision:** Exact layoff numbers are not immediately visible unless labels are added, which makes it difficult for users who needs precise data for analysis.\
+- **High Cognitive Load:** Viewers must interpret multiple visual encodings at the same time, including position, size, color, and timeline. This increases the effort required to understand the information.\
+- **Difficult to Compare Trends within Industries:** All industries are displayed in a single space, it is challenging to clearly observe patterns or changes over time for any specific industry.
 
 # Methodology & Improvement Strategy
 

@@ -11,7 +11,7 @@
 <meta name="author" content="Su Myat Nhwe (2403062)">
 <meta name="author" content="Woo Wei Qin (2402934)">
 <meta name="author" content="Teo Xue Ling Sharlene (2503489)">
-<meta name="dcterms.date" content="2026-03-01">
+<meta name="dcterms.date" content="2026-03-02">
 
 <title>Data Visualization: Critique and Redesign</title>
 <style>
@@ -151,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 1, 2026</p>
+      <p class="date">March 2, 2026</p>
     </div>
   </div>
   
@@ -186,19 +186,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="strengths" class="level3" data-number="2.2.1">
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="strengths"><span class="header-section-number">2.2.1</span> Strengths</h3>
 <ul>
-<li><strong>Comprehensive Data Representation:</strong> The visualisation provides a comprehensive, chronological view of layoffs across multiple sectors, allowing for a broad understanding of the impact of interest rate hikes.<br>
+<li><strong>Comprehensive Data Representation:</strong> The visualisation presents layoffs across multiple sectors in a clear timeline, allowing viewers to understand when layoffs occurred and how different industries were affected by the interest rate hikes.<br>
 </li>
-<li><strong>Use of Size:</strong> Different bubble sizes effectively indicate the scale of layoffs, giving a quick visual cue about the magnitude of job losses in each sector.<br>
+<li><strong>Effective Use of Size:</strong> The variation of bubble sizes effectively indicates the scale of layoffs, giving a quick visual cue about the magnitude of job losses in each sector. Larger bubbles naturally draw the attention, making it easier to identify major layoff events at a glance.<br>
 </li>
+<li><strong>Strategic Labeling:</strong> By labeling only the most prominent companies like Meta and Amazon, it provides immediate context for massive layoffs while preventing text clutter.<br>
+</li>
+<li><strong>Clear Chronological Structure:</strong> The timeline effectively maps the progression of layoffs, highlighting peak periods and allowing viewers to easily correlate job losses with rising interest rates.</li>
 </ul>
 </section>
 <section id="weaknesses" class="level3" data-number="2.2.2">
 <h3 data-number="2.2.2" class="anchored" data-anchor-id="weaknesses"><span class="header-section-number">2.2.2</span> Weaknesses</h3>
 <p>Packing four variables into a single chart violates several core data visualization principles:<br>
-- <strong>Severe Overplotting and Occlusion:</strong> Massive bubbles representing companies physically cover up dozens of smaller layoff events in the same time period.<br>
-- <strong>The “Area” Perception Problem:</strong> Human visual perception is poor at comparing 2D areas, making it difficult to differentiate the scale of layoffs between overlapping bubbles.<br>
-- <strong>High Cognitive Load:</strong> The viewer’s brain must simultaneously track the timeline, find the specific industry on the Y-axis, estimate the bubble area, and match color to a legend.<br>
-- <strong>Misleading Density:</strong> The volume of overlapping circles in sections like “Big Tech” and “Retail” obscures the individual data points and specific dates.</p>
+</p>
+<ul>
+<li><strong>Severe Overplotting and Occlusion:</strong> The large number of overlapping bubbles, particularly during peak periods and in sectors like Big Tech and Retail, makes the chart appear crowded. Larger bubbles frequently obscure smaller ones, which hides important data points and reduces overall clarity.<br>
+</li>
+<li><strong>Inaccurate Perception of Bubble Size:</strong> Human perception is not well suited for comparing differences in area. As a result, it is difficult for viewers to accurately judge the scale of layoffs, particularly when bubbles overlap or are similar in size.<br>
+</li>
+<li><strong>Missing Size Legend:</strong> Although larger bubbles clearly represent larger layoffs, the chart does not include a size legend. Without a reference, viewers cannot estimate the actual number of employees affected, reducing the chart’s usefulness for quantitative interpretation.<br>
+</li>
+<li><strong>Limited Precision:</strong> Exact layoff numbers are not immediately visible unless labels are added, which makes it difficult for users who needs precise data for analysis.<br>
+</li>
+<li><strong>High Cognitive Load:</strong> Viewers must interpret multiple visual encodings at the same time, including position, size, color, and timeline. This increases the effort required to understand the information.<br>
+</li>
+<li><strong>Difficult to Compare Trends within Industries:</strong> All industries are displayed in a single space, it is challenging to clearly observe patterns or changes over time for any specific industry.</li>
+</ul>
 </section>
 </section>
 </section>

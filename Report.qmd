@@ -200,5 +200,6 @@ We believe that the planned analysis will help our team to :
 | Woo Wei Qin | - Translate discusses improved visualisations into the proposal.<br>- Assist in designing the improved visualization layout and structure.<br>- Conduct exploratory data analysis. |
 | Liew Jia Rong | - Assist in brainstorming ideas for improved visualisation.<br>- Clean, transform and prepare the dataset for visualization.<br>- Conduct exploratory data analysis. |
 | Su Myat Nhwe | - Identify trends that validate or challenge the visual narrative.<br>- Conduct exploratory data analysis.<br>- Simple visualisations to back up the story narrative. |
+| Team Effort | - Quarto Revealjs Presentation Preparation.<br>- MP4 Recording. |
 
 

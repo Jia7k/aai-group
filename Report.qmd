@@ -129,6 +129,19 @@ layoffs_clean <- layoffs_raw %>%
 # 3. View a summary of the cleaned data
 glimpse(layoffs_clean)
 ```
+Before we could start building our visualizations, we needed to clean up the raw data. Real-world datasets are rarely perfect right out of the box, and this tech layoffs dataset was no exception.
+
+To make sure our charts would be accurate and easy to read, we took the following steps to prep the data:
+
+Fixing the Dates: In the raw file, the dates were saved as plain text (like "2024-06-05"), which the software can't automatically recognize as a chronological timeline. We converted these into proper date formats. To make it easier to group our data later, we also extracted the specific "Year" and "Month" into their own separate columns.
+
+Removing the Clutter: The original file contained a lot of extra administrative information that we didn't need for our visual analysis—like source URLs, exact timestamps of when the data was logged, and long text lists of laid-off employees. We deleted these unnecessary columns to keep our dataset clean and help our code run faster.
+
+Standardizing the Categories: We wanted to compare layoffs across different groups, so we needed to make sure the software correctly recognized text labels like "Industry," "Country," and "Funding Stage." We converted these text columns into standardized categories so that identical labels wouldn't get accidentally split up by hidden formatting quirks or typos.
+
+Handling Missing Data: You can't plot a missing number on a graph, and this dataset naturally had a few blank cells. We set a simple rule: if a layoff event was completely missing both the raw number of employees let go and the percentage of the workforce affected, we removed that row. As long as a row had at least one of those two key numbers, we kept it in. This allowed us to clean the data without losing too much valuable information.
+
+Once these steps were complete, the dataset was fully organized and ready to be turned into visual trends.
 
 ## Visualization Strategy & Final Design Choices
 - **Chart Type:** Transitioned from a single, crowded bubble chart to small multiple scatter plots for each sector.\

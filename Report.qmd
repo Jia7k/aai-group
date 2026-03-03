@@ -70,6 +70,7 @@ Within each Small Multiples panel, we will retain bubble size as a secondary enc
 **Weakness addressed:** High cognitive load from tracking four variables simultaneously.
 
 The original chart forces the viewer to cross-reference the Y-axis label, the X-axis timeline, the bubble size, and the colour legend all at once. Our redesign reduces this burden in two ways:
+
 - **Panel titles** replace the need to read the Y-axis for every data point — each 
   sector panel is self-labelled.
 - **Annotation of key events** (e.g., Fed rate hike dates marked with a vertical reference 
@@ -194,10 +195,10 @@ We believe that the planned analysis will help our team to :
 
 | Team Member | Responsibility |
 |----------|---------------|
-| Alyssa Kwek Li Yun | - Articulate the story behind the selected visualization.<br>- Assist in designing the improved visualization layout and structure. |
-| Teo Xue Ling Sharlene | - Identify strengths and weaknesses of the selected visualization.<br>- Assist in designing the improved visualization layout and structure. |
-| Woo Wei Qin | - Assist in designing the improved visualization layout and structure.<br>- Conduct exploratory data analysis. |
-| Liew Jia Rong | - Clean, transform and prepare the dataset for visualization.<br>- Conduct exploratory data analysis. |
-| Su Myat Nhwe | - Identify trends that validate or challenge the visual narrative.<br> Conduct exploratory data analysis. |
+| Alyssa Kwek Li Yun | - Articulate the story behind the selected visualization.<br>- Assist in designing the improved visualization layout and structure.<br>- Assist in identifying the strengths and weaknesses of selected visualisation. |
+| Teo Xue Ling Sharlene | - Identify strengths and weaknesses of the selected visualization.<br>- Assist in designing the improved visualization layout and structure.<br>- Assist in brainstorming ideas for improved visualisation. |
+| Woo Wei Qin | - Translate discusses improved visualisations into the proposal.<br>- Assist in designing the improved visualization layout and structure.<br>- Conduct exploratory data analysis. |
+| Liew Jia Rong | - Assist in brainstorming ideas for improved visualisation.<br>- Clean, transform and prepare the dataset for visualization.<br>- Conduct exploratory data analysis. |
+| Su Myat Nhwe | - Identify trends that validate or challenge the visual narrative.<br>- Conduct exploratory data analysis.<br>- Simple visualisations to back up the story narrative. |
 
 

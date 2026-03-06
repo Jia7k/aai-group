@@ -11,7 +11,7 @@
 <meta name="author" content="Su Myat Nhwe (2403062)">
 <meta name="author" content="Woo Wei Qin (2402934)">
 <meta name="author" content="Teo Xue Ling Sharlene (2503489)">
-<meta name="dcterms.date" content="2026-03-03">
+<meta name="dcterms.date" content="2026-03-06">
 
 <title>Data Visualization: Critique and Redesign</title>
 <style>
@@ -151,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 3, 2026</p>
+      <p class="date">March 6, 2026</p>
     </div>
   </div>
   
@@ -305,6 +305,13 @@ $ Year           &lt;dbl&gt; 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 202
 $ Month          &lt;ord&gt; Jun, Jun, Jun, Jun, Jun, Jun, Jun, May, May, May, May, …</code></pre>
 </div>
 </div>
+<p>Before we could start building our visualizations, we needed to clean up the raw data. Real-world datasets are rarely perfect right out of the box, and this tech layoffs dataset was no exception.</p>
+<p>To make sure our charts would be accurate and easy to read, we took the following steps to prep the data:</p>
+<p>Fixing the Dates: In the raw file, the dates were saved as plain text (like “2024-06-05”), which the software can’t automatically recognize as a chronological timeline. We converted these into proper date formats. To make it easier to group our data later, we also extracted the specific “Year” and “Month” into their own separate columns.</p>
+<p>Removing the Clutter: The original file contained a lot of extra administrative information that we didn’t need for our visual analysis—like source URLs, exact timestamps of when the data was logged, and long text lists of laid-off employees. We deleted these unnecessary columns to keep our dataset clean and help our code run faster.</p>
+<p>Standardizing the Categories: We wanted to compare layoffs across different groups, so we needed to make sure the software correctly recognized text labels like “Industry,” “Country,” and “Funding Stage.” We converted these text columns into standardized categories so that identical labels wouldn’t get accidentally split up by hidden formatting quirks or typos.</p>
+<p>Handling Missing Data: You can’t plot a missing number on a graph, and this dataset naturally had a few blank cells. We set a simple rule: if a layoff event was completely missing both the raw number of employees let go and the percentage of the workforce affected, we removed that row. As long as a row had at least one of those two key numbers, we kept it in. This allowed us to clean the data without losing too much valuable information.</p>
+<p>Once these steps were complete, the dataset was fully organized and ready to be turned into visual trends.</p>
 </section>
 <section id="visualization-strategy-final-design-choices" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="visualization-strategy-final-design-choices"><span class="header-section-number">3.4</span> Visualization Strategy &amp; Final Design Choices</h2>

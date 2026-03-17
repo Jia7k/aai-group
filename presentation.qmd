@@ -73,7 +73,7 @@ fed_hikes <- as.Date(c("2022-03-16", "2022-05-04", "2022-06-15",
 
 # Original Visualization {.unnumbered}
 
-## The Visualization We Analysed
+## The Visualization We Analysed {.smaller}
 
 <hr>
 
@@ -87,8 +87,6 @@ fed_hikes <- as.Date(c("2022-03-16", "2022-05-04", "2022-06-15",
 > Source: [proprietaryreasoning.com](https://www.proprietaryreasoning.com)  
 > Coverage: January 2022 – May 2023, U.S.-based companies only (≥ 100 FTE layoffs)
 
-. . .
-
 **What the chart encodes:**
 
 | Visual Channel | Variable |
@@ -98,12 +96,13 @@ fed_hikes <- as.Date(c("2022-03-16", "2022-05-04", "2022-06-15",
 | Bubble size | Employees laid off |
 | Colour | Sector grouping |
 
-. . .
 
-::: {.callout-note}
-Selected because it directly links macroeconomic policy (Fed rate hikes) to workforce instability — a compelling, socially relevant story worth telling more clearly.
+
 :::
-
+::: {.callout-note}
+<span style="font-size: 1.2em;">
+Selected because it directly links macroeconomic policy (Fed rate hikes) to workforce instability — a compelling, socially relevant story worth telling more clearly.
+</span>
 :::
 ::::
 
@@ -118,30 +117,30 @@ Selected because it directly links macroeconomic policy (Fed rate hikes) to work
 :::: columns
 ::: {.column width="50%"}
 
-**✅ Comprehensive Data Representation**
+**1. Comprehensive Data Representation**
+<div style="font-size: 0.85em; color: #1a0909; margin-bottom: 20px;">
+Displays layoffs across multiple sectors on a shared timeline, instantly showing *when* and *where* peaks occurred.
+<br><br>
+</div>
 
-The chart presents layoffs across multiple sectors on a single shared timeline. Viewers can immediately see *when* layoffs occurred and *which* industries were affected — a strength especially useful for identifying peaks.
-
-. . .
-
-**✅ Effective Use of Bubble Size**
-
-Size variation gives an instant visual cue about the *magnitude* of layoffs. Larger bubbles draw the eye to major events (e.g., Meta, Amazon), aiding quick pattern recognition.
+**2. Effective Use of Bubble Size**
+<div style="font-size: 0.85em; color: #1a0909; margin-bottom: 20px;">
+Bubble size conveys layoff *magnitude*, quickly drawing attention to the major events (e.g., Meta, Amazon).
+</div>
 
 :::
 ::: {.column width="50%"}
 
-. . .
+**3. Strategic Labeling**
+<div style="font-size: 0.85em; color: #1a0909; margin-bottom: 20px;">
+Labeling only key companies provides essential real-world context without cluttering the chart.
+<br><br><br>
+</div>
 
-**✅ Strategic Labeling**
-
-Labeling only the most prominent companies avoids text overload while still providing essential real-world context for the largest layoff events.
-
-. . .
-
-**✅ Clear Chronological Structure**
-
-The timeline structure allows viewers to correlate the onset of job losses with the beginning of interest rate increases — supporting the chart's core narrative.
+**4. Clear Chronological Structure**
+<div style="font-size: 0.85em; color: #1a0909; margin-bottom: 20px;">
+The timeline clearly connects the onset of job losses to rising interest rates, reinforcing the core narrative.
+</div>
 
 :::
 ::::
@@ -154,30 +153,32 @@ The timeline structure allows viewers to correlate the onset of job losses with 
 :::: columns
 ::: {.column width="50%"}
 
-**❌ Severe Overplotting and Occlusion**
+**1. Severe Overplotting and Occlusion**
+<div style="font-size: 0.85em; color: #1a0909; margin-bottom: 20px;">
+Large bubbles (e.g., Meta, Amazon) obscure smaller events. Crowded sectors like Big Tech appear as an undifferentiated mass, hiding within-sector trends.
+</div>
+<br>
 
-Large bubbles (e.g., Meta, Amazon) physically obscure dozens of smaller events in the same time window. Crowded sectors like Big Tech appear as an undifferentiated mass, making it impossible to observe within-sector trends.
-
-. . .
-
-**❌ The "Area" Perception Problem**
-
-Human perception is unreliable when comparing 2D areas (Cleveland & McGill, 1984). Without a size legend, viewers cannot make quantitative judgements — the chart becomes purely impressionistic.
+**2. The "Area" Perception Problem**
+<div style="font-size: 0.85em; color: #1a0909; margin-bottom: 20px;">
+Human perception of 2D areas is unreliable. (Cleveland & McGill, 1984). Without a size legend, viewers cannot make quantitative judgements and remains impressionistic.
+</div>
+<br>
 
 :::
 ::: {.column width="50%"}
 
-. . .
+**3. High Cognitive Load**
+<div style="font-size: 0.85em; color: #1a0909; margin-bottom: 20px;">
+Viewers must simultaneously decode *position*, *size*, *colour*, and *timeline*, making it harder to extract any single insight.
+</div>
+<br>
 
-**❌ High Cognitive Load**
-
-Viewers must simultaneously decode *position*, *size*, *colour*, and *timeline* — four visual channels at once. This raises the perceptual effort needed to extract any single insight.
-
-. . .
-
-**❌ Poor Colour Accessibility**
-
-High-saturation neon colours on a black background are visually striking but inaccessible to colour-vision-deficient viewers. Adjacent overlapping bubbles also suffer perceptual interference, further reducing legibility.
+**4. Poor Colour Accessibility**
+<div style="font-size: 0.85em; color: #1a0909; margin-bottom: 20px;">
+Neon colors on black are inaccessible to colour-vision-deficient viewers. Adjacent overlapping bubbles cause perceptual interference, further reducing legibility.
+</div>
+<br>
 
 :::
 ::::
@@ -185,52 +186,57 @@ High-saturation neon colours on a black background are visually striking but ina
 
 # Proposed Improvements
 
-## Our Redesign Strategy
+## Our Redesign Strategy 
 
 <hr>
 
-Each improvement is directly mapped to a specific weakness identified above — ensuring our changes are purposeful and evidence-based.
+Each improvement is directly mapped to a specific weakness identified to ensure our changes are purposeful and evidence-based. 
 
-. . .
-
+<div style="font-size: 0.85em; margin-bottom: 15px;">
 | Weakness | Improvement |
 |----------|-------------|
 | Overplotting & Occlusion | **Small Multiples** — one panel per major industry sector |
 | Area Perception Problem | **Dual encoding** — bubble size *and* colour gradient for layoff magnitude |
 | High Cognitive Load | **Panel titles + event annotations** — reference lines for Fed hike dates |
 | Poor Colour Accessibility | **ColorBrewer palette** on a light background; shared, labelled legend |
-
-. . .
+</div>
 
 ::: {.callout-note}
 Following Tufte's principle of maximising the *data-ink ratio*, our redesign removes visual clutter without losing any information. Every layoff event becomes visible and individually legible.
 :::
-
 
 ## Small Multiples Layout
 
 <hr>
 
 **Why Small Multiples?**
-
-> Separating each sector into its own panel eliminates occlusion entirely. Consistent axes across all panels allow meaningful cross-sector comparison while preserving within-sector trends that were invisible in the original.
-
-. . .
+<div style="font-size: 0.9em; margin-bottom: 25px; text-align: left; padding: 15px;">
+<ul>
+<li>Separating each sector into its own panel eliminates occlusion entirely. Consistent axes across all panels allow meaningful cross-sector comparison while preserving within-sector trends that were invisible in the original.</li>
+</ul>
+</div>
 
 :::: columns
 ::: {.column width="50%"}
 **Original approach (single crowded chart):**
+<div style="font-size: 0.85em; padding-left: 10px;">
+<ul>
+<li> All sectors share one space </li>
+<li> Larger bubbles hide smaller ones </li>
+<li> Within-sector time trends unreadable </li>
+</ul>
+</div>
 
-- All sectors share one space
-- Larger bubbles hide smaller ones
-- Within-sector time trends unreadable
 :::
 ::: {.column width="50%"}
 **Our approach (small multiples):**
-
-- Each sector in its own panel
-- Every event is individually visible
-- Cross-sector comparison remains possible via aligned axes
+<div style="font-size: 0.85em; padding-left: 10px;">
+<ul>
+<li> Each sector in its own panel </li>
+<li> Every event is individually visible </li>
+<li> Cross-sector comparison remains possible via aligned axes</li>
+</ul>
+</div>
 :::
 ::::
 
@@ -573,30 +579,29 @@ ggplot(corr_data, aes(x = Funds_Raised, y = Laid_Off_Count)) +
 :::: columns
 ::: {.column width="50%"}
 
-**📈 Temporal Escalation**
+**Temporal Escalation**
+<div style="font-size: 0.85em; margin-bottom: 20px;">
+Layoffs surged significantly *after* the first rate hike in March 2022, empirically supporting the original chart's core narrative.
+</div>
+<br>
 
-Layoff activity surges sharply after March 2022. Monthly layoff totals *after* the first rate hike are substantially higher than the pre-hike baseline, providing empirical support for the original chart's narrative.
-
-. . .
-
-**🏭 Sector Vulnerability**
-
+**Sector Vulnerability**
+<div style="font-size: 0.85em; margin-bottom: 20px;">
 Consumer tech, retail, and finance sectors show the highest absolute layoff counts. Our small multiples reveal that the *timing* of layoff peaks also differs by sector — a nuance entirely hidden in the original.
-
+</div>
 :::
 ::: {.column width="50%"}
 
-. . .
+**Stage Matters**
+<div style="font-size: 0.85em; margin-bottom: 20px;">
+Public, post-IPO companies drove the majority of layoffs, appear to respond aggressively to tightening conditions and quarterly earnings pressures.
+</div>
+<br>
 
-**🏢 Stage Matters**
-
-Post-IPO companies account for a disproportionately large share of total layoffs. Publicly listed firms — subject to quarterly earnings pressure — appear to have responded most aggressively to tightening financial conditions.
-
-. . .
-
-**💰 Capital & Scale**
-
-There is a modest positive correlation between funds raised and layoff count. This likely reflects company size rather than recklessness: larger firms employed more people and thus shed more in absolute terms.
+**Capital & Scale**
+<div style="font-size: 0.85em; margin-bottom: 20px;">
+Layoffs positively correlate with funds raised. This reflects scale rather than recklessness: larger firms simply had more jobs to cut.
+</div>
 
 :::
 ::::

@@ -201,44 +201,156 @@ Each improvement is directly mapped to a specific weakness identified to ensure 
 | Poor Colour Accessibility | **ColorBrewer palette** on a light background; shared, labelled legend |
 </div>
 
+. . .
+
 ::: {.callout-note}
 Following Tufte's principle of maximising the *data-ink ratio*, our redesign removes visual clutter without losing any information. Every layoff event becomes visible and individually legible.
 :::
+
+---
 
 ## Small Multiples Layout
 
 <hr>
 
 **Why Small Multiples?**
-<div style="font-size: 0.9em; margin-bottom: 25px; text-align: left; padding: 15px;">
-<ul>
-<li>Separating each sector into its own panel eliminates occlusion entirely. Consistent axes across all panels allow meaningful cross-sector comparison while preserving within-sector trends that were invisible in the original.</li>
-</ul>
-</div>
+
+- Separating each sector into its own panel significantly reduces occlusion  
+- Consistent axes allow meaningful cross-sector comparison  
+- Within-sector trends become visible  
+
+. . .
 
 :::: columns
 ::: {.column width="50%"}
 **Original approach (single crowded chart):**
-<div style="font-size: 0.85em; padding-left: 10px;">
-<ul>
-<li> All sectors share one space </li>
-<li> Larger bubbles hide smaller ones </li>
-<li> Within-sector time trends unreadable </li>
-</ul>
-</div>
+
+- All sectors share one space  
+- Larger bubbles hide smaller ones  
+- Within-sector trends unreadable  
 
 :::
+
 ::: {.column width="50%"}
 **Our approach (small multiples):**
-<div style="font-size: 0.85em; padding-left: 10px;">
-<ul>
-<li> Each sector in its own panel </li>
-<li> Every event is individually visible </li>
-<li> Cross-sector comparison remains possible via aligned axes</li>
-</ul>
-</div>
+
+- Each sector in its own panel  
+- Every event is individually visible  
+- Cross-sector comparison preserved  
+
 :::
 ::::
+
+---
+
+## Dual Encoding for Layoff Magnitude
+
+<hr>
+
+**Why not rely on bubble size alone?**
+
+- Human perception is poor at comparing 2D areas (Cleveland & McGill, 1984)  
+- Overlapping bubbles distort size comparisons  
+
+. . .
+
+:::: columns
+::: {.column width="50%"}
+**Original approach (size only):**
+
+- Relies entirely on area perception  
+- Difficult to compare similar-sized bubbles  
+- Overlap reduces interpretability  
+
+:::
+
+::: {.column width="50%"}
+**Our approach (dual encoding):**
+
+- Bubble size retained for intuitive impact  
+- Colour gradient adds second perceptual cue  
+- Improves magnitude comparison accuracy  
+
+:::
+::::
+
+. . .
+
+::: {.callout-note}
+Dual encoding provides redundant visual cues, improving perceptual accuracy and reducing reliance on area judgement alone.
+:::
+
+---
+
+## Reducing Cognitive Load
+
+<hr>
+
+**Why is the original chart cognitively demanding?**
+
+- Must interpret time, sector, size, and colour simultaneously  
+- Requires constant cross-referencing  
+
+. . .
+
+:::: columns
+::: {.column width="50%"}
+**Original approach:**
+
+- Heavy reliance on axis labels  
+- Visual variables compete for attention  
+- High mental effort required  
+
+:::
+
+::: {.column width="50%"}
+**Our approach:**
+
+- Panel titles replace repeated axis reading  
+- Structured layout guides visual flow  
+- Reduces need for cross-referencing  
+
+:::
+::::
+
+---
+
+## Contextual Annotations
+
+<hr>
+
+**Why add event annotations?**
+
+- Layoffs are influenced by macroeconomic events  
+- Without context, timing is harder to interpret  
+
+. . .
+
+:::: columns
+::: {.column width="50%"}
+**Without annotations:**
+
+- Timeline lacks context  
+- Patterns harder to interpret  
+- Requires external knowledge  
+
+:::
+
+::: {.column width="50%"}
+**With annotations:**
+
+- Vertical lines mark key events  
+- Immediate economic context  
+- Stronger narrative clarity  
+
+:::
+::::
+
+. . .
+
+::: {.callout-note}
+Embedding macroeconomic context directly into the chart reduces interpretation effort and improves analytical clarity.
+:::
 
 
 # Data Source & Engineering

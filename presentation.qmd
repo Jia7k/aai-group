@@ -7,7 +7,7 @@ author:
   - Su Myat Nhwe (2403062)
   - Woo Wei Qin (2402934)
   - Teo Xue Ling Sharlene (2503489)
-date: 2026-03-10
+date: 2026-04-01
 date-format: "dddd MMM DD, YYYY"
 
 toc: true
@@ -25,7 +25,7 @@ format:
     margin: 0.05
     min-scale: 0.2
     max-scale: 2.0
-    scrollable: true
+    scrollable: false
     slide-number: true
     preview-links: false
     incremental: true
@@ -101,7 +101,7 @@ fed_hikes <- as.Date(c("2022-03-16", "2022-05-04", "2022-06-15",
 :::
 ::: {.callout-note}
 <span style="font-size: 1.2em;">
-Selected because it directly links macroeconomic policy (Fed rate hikes) to workforce instability — a compelling, socially relevant story worth telling more clearly.
+Selected because it directly links macroeconomic policy (Fed rate hikes) to workforce instability - a compelling, socially relevant story worth telling more clearly.
 </span>
 :::
 ::::
@@ -195,9 +195,9 @@ Each improvement is directly mapped to a specific weakness identified to ensure 
 <div style="font-size: 0.85em; margin-bottom: 15px;">
 | Weakness | Improvement |
 |----------|-------------|
-| Overplotting & Occlusion | **Small Multiples** — one panel per major industry sector |
-| Area Perception Problem | **Dual encoding** — bubble size *and* colour gradient for layoff magnitude |
-| High Cognitive Load | **Panel titles + event annotations** — reference lines for Fed hike dates |
+| Overplotting & Occlusion | **Small Multiples** - one panel per major industry sector |
+| Area Perception Problem | **Dual encoding** - bubble size *and* colour gradient for layoff magnitude |
+| High Cognitive Load | **Panel titles + event annotations** - reference lines for Fed hike dates |
 | Poor Colour Accessibility | **ColorBrewer palette** on a light background; shared, labelled legend |
 </div>
 
@@ -355,12 +355,12 @@ Embedding macroeconomic context directly into the chart reduces interpretation e
 
 # Data Source & Engineering
 
-## Data Source
+## Data Source {.smaller}
 
 <hr>
 
 **Primary Dataset:**  
-[Kaggle — Layoffs Data 2022](https://www.kaggle.com/datasets/theakhilb/layoffs-data-2022)
+[Kaggle - Layoffs Data 2022](https://www.kaggle.com/datasets/theakhilb/layoffs-data-2022)
 
 . . .
 
@@ -392,30 +392,30 @@ Unlike the original visualisation which focused only on U.S.-based companies, th
 :::
 
 
-## Data Engineering Workflow
+## Data Engineering Workflow {.smaller}
 
 <hr>
 
-**Step 1 — Fix Dates**
+**Step 1 - Fix Dates**
 
 Date strings (e.g. `"2024-06-05"`) converted to proper `Date` objects.  
 `Year` and `Month` extracted as separate columns for time-series grouping.
 
 . . .
 
-**Step 2 — Remove Unnecessary Columns**
+**Step 2 - Remove Unnecessary Columns**
 
-Source URLs, exact log timestamps, and raw employee name lists dropped — reducing noise and improving processing speed.
+Source URLs, exact log timestamps, and raw employee name lists dropped - reducing noise and improving processing speed.
 
 . . .
 
-**Step 3 — Standardise Categories**
+**Step 3 - Standardise Categories**
 
 `Industry`, `Country`, and `Stage` converted to `factor` type to prevent silent label-splitting from formatting quirks or typos.
 
 . . .
 
-**Step 4 — Handle Missing Data**
+**Step 4 - Handle Missing Data**
 
 Rows missing **both** `Laid_Off_Count` and `Percentage` were removed. Rows with at least one of the two key values were retained, preserving as much data as possible.
 
@@ -426,7 +426,7 @@ cat("Date range:", format(min(layoffs$Date, na.rm=TRUE)), "to", format(max(layof
 ```
 
 
-## A Glimpse at the Cleaned Data
+## A Glimpse at the Cleaned Data {.smaller}
 
 <hr>
 
@@ -443,49 +443,13 @@ layoffs |>
 
 # Improved Visualization
 
-## Monthly Layoff Trend (Time-Series)
-
-<hr>
+## Small Multiples by Industry (Top 8 Sectors) {.unnumbered .unlisted}
 
 ```{r}
 #| echo: false
-#| fig-width: 14
-#| fig-height: 5
-
-monthly <- layoffs |>
-  filter(!is.na(Laid_Off_Count)) |>
-  group_by(YearMonth) |>
-  summarise(Total_Laid_Off = sum(Laid_Off_Count, na.rm = TRUE),
-            Events = n(), .groups = "drop")
-
-ggplot(monthly, aes(x = YearMonth, y = Total_Laid_Off)) +
-  geom_col(fill = "#4E79A7", alpha = 0.85) +
-  geom_vline(xintercept = as.numeric(fed_hikes), linetype = "dashed",
-             colour = "#E15759", alpha = 0.6, linewidth = 0.5) +
-  annotate("text", x = as.Date("2022-03-16"), y = max(monthly$Total_Laid_Off) * 0.95,
-           label = "Fed rate hikes ↑", colour = "#E15759", hjust = -0.05, size = 3.5) +
-  scale_y_continuous(labels = comma) +
-  scale_x_date(date_breaks = "3 months", date_labels = "%b %Y") +
-  labs(
-    title = "Monthly Total Layoffs — Global Tech Sector",
-    subtitle = "Red dashed lines mark Federal Reserve interest rate hike dates",
-    x = NULL, y = "Employees Laid Off"
-  ) +
-  theme_minimal(base_size = 13) +
-  theme(panel.grid.minor = element_blank())
-```
-
-> Layoff volumes escalate sharply following the onset of Fed rate hikes in March 2022, peaking in late 2022 and early 2023.
-
-
-## Small Multiples by Industry (Top 8 Sectors)
-
-<hr>
-
-```{r}
-#| echo: false
-#| fig-width: 15
-#| fig-height: 7
+#| fig-width: 16
+#| fig-height: 8.2
+#| fig-align: center
 
 top_industries <- layoffs |>
   filter(!is.na(Laid_Off_Count)) |>
@@ -509,93 +473,40 @@ ggplot(sm_data, aes(x = Date, y = Laid_Off_Count,
   scale_y_continuous(labels = comma) +
   scale_x_date(date_breaks = "6 months", date_labels = "%b\n%Y") +
   labs(
-    title = "Layoff Events by Industry Sector — Small Multiples",
-    subtitle = "Bubble size and colour intensity both encode layoff count | Red lines = Fed rate hikes",
+    title = "Layoff Events by Industry Sector - Small Multiples",
+    subtitle = "Bubble size and colour intensity both encode layoff count | Red dashed lines = Fed rate hikes",
     x = NULL, y = "Employees Laid Off"
   ) +
-  theme_minimal(base_size = 11) +
+  theme_minimal(base_size = 12) +
   theme(
     panel.grid.minor  = element_blank(),
-    strip.text        = element_text(face = "bold", size = 11),
+    strip.text        = element_text(face = "bold", size = 12),
     legend.position   = "right"
   )
 ```
 
-
-## Layoffs by Industry — Totals
-
-<hr>
-
-```{r}
-#| echo: false
-#| fig-width: 13
-#| fig-height: 6
-
-industry_summary <- layoffs |>
-  filter(!is.na(Laid_Off_Count)) |>
-  group_by(Industry) |>
-  summarise(Total = sum(Laid_Off_Count, na.rm = TRUE),
-            Events = n(), .groups = "drop") |>
-  slice_max(Total, n = 12) |>
-  mutate(Industry = fct_reorder(Industry, Total))
-
-ggplot(industry_summary, aes(x = Total, y = Industry, fill = Total)) +
-  geom_col(show.legend = FALSE) +
-  geom_text(aes(label = comma(Total)), hjust = -0.1, size = 3.5) +
-  scale_fill_gradient(low = "#AEC6E8", high = "#1F4E79") +
-  scale_x_continuous(labels = comma,
-                     expand = expansion(mult = c(0, 0.15))) +
-  labs(
-    title = "Total Employees Laid Off by Industry (Top 12)",
-    x = "Total Employees Laid Off", y = NULL
-  ) +
-  theme_minimal(base_size = 13) +
-  theme(panel.grid.major.y = element_blank())
-```
-
-
-## Layoffs by Company Stage
+## Observations {.smaller}
 
 <hr>
 
-```{r}
-#| echo: false
-#| fig-width: 13
-#| fig-height: 5.5
+**What the improved visualization reveals:**
 
-stage_data <- layoffs |>
-  filter(!is.na(Laid_Off_Count), !is.na(Stage),
-         Stage != "Unknown", Stage != "") |>
-  group_by(Stage) |>
-  summarise(
-    Total       = sum(Laid_Off_Count, na.rm = TRUE),
-    Mean_Layoff = mean(Laid_Off_Count, na.rm = TRUE),
-    Events      = n(),
-    .groups = "drop"
-  ) |>
-  mutate(Stage = fct_reorder(Stage, Total))
+- **Every event is visible** - separating sectors into panels eliminates the occlusion problem entirely. No bubble hides another.
 
-ggplot(stage_data, aes(x = Total, y = Stage)) +
-  geom_col(fill = "#76B7B2", width = 0.6) +
-  geom_text(aes(label = paste0(comma(Total), " (", Events, " events)")),
-            hjust = -0.05, size = 3.5) +
-  scale_x_continuous(labels = comma,
-                     expand = expansion(mult = c(0, 0.25))) +
-  labs(
-    title = "Total Layoffs by Company Funding Stage",
-    subtitle = "Post-IPO firms account for the largest share of total layoffs",
-    x = "Total Employees Laid Off", y = NULL
-  ) +
-  theme_minimal(base_size = 13) +
-  theme(panel.grid.major.y = element_blank())
-```
+- **Within-sector trends emerge** - e.g. Big Tech shows a sharp spike in late 2022 (Meta, Amazon), while Hardware layoffs cluster later in 2023. These patterns were completely hidden in the original.
 
-> Post-IPO companies — facing public market pressure — drove the most layoffs, suggesting publicly listed firms responded most aggressively to tightening financial conditions.
+- **Cross-sector comparison is preserved** - consistent x-axes across all panels allow viewers to compare timing and scale between industries at a glance.
+
+- **Magnitude is doubly encoded** - both bubble size *and* colour intensity represent layoff count, giving two independent perceptual cues for the same variable and reducing reliance on area judgement alone.
+
+- **Macroeconomic context is embedded** - red dashed vertical lines mark each Federal Reserve interest rate hike date, directly connecting the data to the economic narrative without requiring viewers to recall external context.
+
+- **Accessible design** - light background with a perceptually uniform blue gradient replaces the original neon-on-black palette, improving readability for all viewers including those with colour vision deficiency.
 
 
 # Data Analysis
 
-## Time-Series: Before vs. After Rate Hikes
+## Time-Series: Before vs. After Rate Hikes {.smaller}
 
 <hr>
 
@@ -629,7 +540,7 @@ before_after |>
 ```{r}
 #| echo: false
 #| fig-width: 12
-#| fig-height: 4
+#| fig-height: 3.2
 
 monthly_period <- layoffs |>
   filter(!is.na(Laid_Off_Count)) |>
@@ -648,6 +559,81 @@ ggplot(monthly_period, aes(x = YearMonth, y = Total, fill = Period)) +
   theme_minimal(base_size = 12)
 ```
 
+> Monthly layoff volumes after March 2022 are substantially higher than the pre-hike baseline, providing quantitative support for the original chart's core narrative.
+
+
+## Layoffs by Industry - Totals
+
+<hr>
+
+```{r}
+#| echo: false
+#| fig-width: 13
+#| fig-height: 5.2
+
+industry_summary <- layoffs |>
+  filter(!is.na(Laid_Off_Count)) |>
+  group_by(Industry) |>
+  summarise(Total = sum(Laid_Off_Count, na.rm = TRUE),
+            Events = n(), .groups = "drop") |>
+  slice_max(Total, n = 12) |>
+  mutate(Industry = fct_reorder(Industry, Total))
+
+ggplot(industry_summary, aes(x = Total, y = Industry, fill = Total)) +
+  geom_col(show.legend = FALSE) +
+  geom_text(aes(label = comma(Total)), hjust = -0.1, size = 3.5) +
+  scale_fill_gradient(low = "#AEC6E8", high = "#1F4E79") +
+  scale_x_continuous(labels = comma,
+                     expand = expansion(mult = c(0, 0.15))) +
+  labs(
+    title = "Total Employees Laid Off by Industry (Top 12)",
+    x = "Total Employees Laid Off", y = NULL
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(panel.grid.major.y = element_blank())
+```
+
+> Consumer tech and retail sectors bear the heaviest absolute burden, while sectors like Legal and Infrastructure show comparatively limited exposure.
+
+
+## Layoffs by Company Stage
+
+<hr>
+
+```{r}
+#| echo: false
+#| fig-width: 13
+#| fig-height: 4.8
+
+stage_data <- layoffs |>
+  filter(!is.na(Laid_Off_Count), !is.na(Stage),
+         Stage != "Unknown", Stage != "") |>
+  group_by(Stage) |>
+  summarise(
+    Total       = sum(Laid_Off_Count, na.rm = TRUE),
+    Mean_Layoff = mean(Laid_Off_Count, na.rm = TRUE),
+    Events      = n(),
+    .groups = "drop"
+  ) |>
+  mutate(Stage = fct_reorder(Stage, Total))
+
+ggplot(stage_data, aes(x = Total, y = Stage)) +
+  geom_col(fill = "#76B7B2", width = 0.6) +
+  geom_text(aes(label = paste0(comma(Total), " (", Events, " events)")),
+            hjust = -0.05, size = 3.5) +
+  scale_x_continuous(labels = comma,
+                     expand = expansion(mult = c(0, 0.25))) +
+  labs(
+    title = "Total Layoffs by Company Funding Stage",
+    subtitle = "Post-IPO firms account for the largest share of total layoffs",
+    x = "Total Employees Laid Off", y = NULL
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(panel.grid.major.y = element_blank())
+```
+
+> Post-IPO companies - facing public market pressure - drove the most layoffs, suggesting publicly listed firms responded most aggressively to tightening financial conditions.
+
 
 ## Funds Raised vs. Layoff Count
 
@@ -656,7 +642,7 @@ ggplot(monthly_period, aes(x = YearMonth, y = Total, fill = Period)) +
 ```{r}
 #| echo: false
 #| fig-width: 12
-#| fig-height: 5.5
+#| fig-height: 4.8
 
 corr_data <- layoffs |>
   filter(!is.na(Laid_Off_Count), !is.na(Funds_Raised),
@@ -672,14 +658,14 @@ ggplot(corr_data, aes(x = Funds_Raised, y = Laid_Off_Count)) +
   labs(
     title = "Funds Raised vs. Layoff Count (log–log scale)",
     subtitle = paste0("Pearson r = ", round(cor_val, 3),
-                      " — companies with more capital tend to have larger absolute layoffs"),
+                      " - companies with more capital tend to have larger absolute layoffs"),
     x = "Funds Raised (USD millions, log scale)",
     y = "Employees Laid Off (log scale)"
   ) +
   theme_minimal(base_size = 13)
 ```
 
-> A modest positive correlation exists — larger, better-funded companies tend to report larger absolute layoffs, consistent with the scale of their workforces.
+> A modest positive correlation exists - larger, better-funded companies tend to report larger absolute layoffs, consistent with the scale of their workforces.
 
 
 # Insights & Conclusion
@@ -699,7 +685,7 @@ Layoffs surged significantly *after* the first rate hike in March 2022, empirica
 
 **Sector Vulnerability**
 <div style="font-size: 0.85em; margin-bottom: 20px;">
-Consumer tech, retail, and finance sectors show the highest absolute layoff counts. Our small multiples reveal that the *timing* of layoff peaks also differs by sector — a nuance entirely hidden in the original.
+Consumer tech, retail, and finance sectors show the highest absolute layoff counts. Our small multiples reveal that the *timing* of layoff peaks also differs by sector - a nuance entirely hidden in the original.
 </div>
 :::
 ::: {.column width="50%"}
@@ -719,26 +705,26 @@ Layoffs positively correlate with funds raised. This reflects scale rather than 
 ::::
 
 
-## Conclusion
+## Conclusion {.smaller}
 
 <hr>
 
-> Our redesign moves from a single, cluttered bubble chart to a **small multiples layout** that makes every layoff event visible, legible, and comparable across sectors.
+> Our single redesigned visualization - a **faceted small multiples scatter plot** - replaces the original cluttered bubble chart, making every layoff event visible, legible, and comparable across sectors.
 
 . . .
 
 **What we improved:**
 
-- ✅ Overplotting eliminated via panel-per-sector layout
-- ✅ Magnitude judgement aided by dual encoding (size + colour gradient)
-- ✅ Cognitive load reduced through panel titles and Fed hike annotations
-- ✅ Accessibility improved with ColorBrewer palette on a light background
+- Overplotting eliminated via panel-per-sector layout
+- Magnitude judgement aided by dual encoding (size + colour gradient)
+- Cognitive load reduced through panel titles and Fed hike annotations
+- Accessibility improved with ColorBrewer palette on a light background
 
 . . .
 
 **What the data tells us:**
 
-The Federal Reserve's 2022 rate hike cycle coincided with a dramatic and sustained escalation in tech-sector layoffs globally — a pattern that is only clearly visible once the visualization is redesigned to let the data breathe.
+The Federal Reserve's 2022 rate hike cycle coincided with a dramatic and sustained escalation in tech-sector layoffs globally - a pattern that is only clearly visible once the visualization is redesigned to let the data breathe.
 
 . . .
 
@@ -749,18 +735,18 @@ All source code, cleaned data, and rendered HTML outputs are included in the pro
 
 # Appendix {.unnumbered}
 
-## Team Contributions {.unnumbered}
+## Team Contributions {.smaller}
 
 <hr>
 
 | Team Member | Contributions |
 |-------------|--------------|
-| **Liew Jia Rong** | Dataset cleaning, transformation, and EDA |
-| **Alyssa Kwek Li Yun** | Visualization story, critique strengths & weaknesses |
-| **Su Myat Nhwe** | Trend validation, EDA, supporting visualizations |
-| **Woo Wei Qin** | Translated improvement ideas into proposal; EDA |
-| **Teo Xue Ling Sharlene** | Critique analysis, improved visualization design |
-| **All Members** | RevealJS presentation preparation; MP4 recording |
+| **Liew Jia Rong** | Lead on data engineering, responsible for dataset cleaning, transformation and source documentation. |
+| **Alyssa Kwek Li Yun** | Developed the project narrative, synthesized final insights and conclusions. |
+| **Su Myat Nhwe** | Executed the improved visualization and in-depth data analysis, focusing on trend validation. |
+| **Woo Wei Qin** | Outlined the proposed design improvements and supported the early-stage data exploration. |
+| **Teo Xue Ling Sharlene** | Conducted the design critique, evaluating the effectiveness and limitations of the original visualization. |
+| **All Members** | Collaborative preparation of the RevealJS presentation and final MP4 recording. |
 
 
 ## References {.unnumbered}
@@ -771,6 +757,6 @@ All source code, cleaned data, and rendered HTML outputs are included in the pro
 
 - Tufte, E. R. (2001). *The Visual Display of Quantitative Information* (2nd ed.). Graphics Press.
 
-- Layoffs dataset: [Kaggle — Layoffs Data 2022](https://www.kaggle.com/datasets/theakhilb/layoffs-data-2022)
+- Layoffs dataset: [Kaggle - Layoffs Data 2022](https://www.kaggle.com/datasets/theakhilb/layoffs-data-2022)
 
 - ColorBrewer: [colorbrewer2.org](https://colorbrewer2.org)

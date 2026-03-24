@@ -355,90 +355,264 @@ Embedding macroeconomic context directly into the chart reduces interpretation e
 
 # Data Source & Engineering
 
+
 ## Data Source {.smaller}
 
 <hr>
 
-**Primary Dataset:**  
-[Kaggle - Layoffs Data 2022](https://www.kaggle.com/datasets/theakhilb/layoffs-data-2022)
+:::: columns
+::: {.column width="55%"}
 
-. . .
+::: {.fragment}
+**Dataset: Kaggle — Tech Layoffs 2022**
 
-```{r}
-#| echo: false
-
-tibble(
-  Field = c("Company", "Location_HQ", "Industry", "Laid_Off_Count",
-            "Date", "Funds_Raised", "Stage", "Country", "Percentage"),
-  Description = c(
-    "Company name",
-    "Headquarters city",
-    "Industry sector",
-    "Number of employees laid off",
-    "Date of layoff announcement",
-    "Total funds raised (USD millions)",
-    "Company funding stage (e.g. Post-IPO, Series B)",
-    "Country of headquarters",
-    "Percentage of workforce laid off"
-  )
-) |>
-  knitr::kable()
-```
-
-. . .
-
-::: {.callout-note}
-Unlike the original visualisation which focused only on U.S.-based companies, this dataset provides a **global perspective**, documenting layoff events internationally from 2022 onwards.
+<div style="font-size: 0.85em; color: #1a0909; margin-bottom: 12px;">
+Sourced from <a href="https://www.kaggle.com/datasets/theakhilb/layoffs-data-2022" target="_blank">kaggle.com</a> — a crowdsourced compilation of verified layoff announcements drawn from public filings, news reports, and company statements.
+</div>
 :::
 
+::: {.fragment}
+<div style="font-size: 0.82em; color: #1a0909; margin-bottom: 4px;">
 
-## Data Engineering Workflow {.smaller}
+| Variable | Used in |
+|----------|---------|
+| `Date` | Time-series & before/after rate hike analysis |
+| `Company` | Event labelling & company-level breakdown |
+| `Industry` | Industry totals chart (top 12 sectors) |
+| `Laid_Off_Count` | Primary magnitude across all visualisations |
+| `Percentage` | Secondary magnitude; retained where count is missing |
+| `Country` | Global scope; 63 countries captured |
+| `Stage` | Layoffs by funding stage analysis |
+| `Funds_Raised` | Correlation analysis vs. layoff count |
+
+</div>
+:::
+
+:::
+::: {.column width="45%"}
+
+::: {.fragment}
+**Why this dataset?**
+:::
+
+::: {.fragment}
+<div style="font-size: 0.85em; color: #1a0909; margin-bottom: 10px;">
+**Beyond the original's scope** — the original chart was restricted to U.S. companies with ≥ 100 FTE layoffs. This dataset is global with no minimum threshold, capturing 63 countries and surfacing events the original missed entirely.
+</div>
+:::
+
+::: {.fragment}
+<div style="font-size: 0.85em; color: #1a0909; margin-bottom: 10px;">
+**Richer temporal window** — coverage runs from March 2020 to June 2024, giving us a full pre-hike baseline to measure against the Fed's first rate rise in March 2022.
+</div>
+:::
+
+::: {.fragment}
+<div style="font-size: 0.85em; color: #1a0909; margin-bottom: 10px;">
+**Analysis-ready structure** — with 3,043 cleaned records across 31 industries, the dataset is large enough for meaningful aggregation but focused enough to tell a coherent story.
+</div>
+:::
+
+::: {.fragment}
+::: {.callout-note}
+Every column in the table above maps directly to at least one chart or analysis in this presentation — no variable was loaded without purpose.
+:::
+:::
+
+:::
+::::
+
+
+---
+
+## Data Engineering: Pipeline & Temporal Extraction {.smaller}
 
 <hr>
 
-**Step 1 - Fix Dates**
+::: {.fragment}
+Real-world datasets require robust, auditable transformations. We built a reproducible `dplyr` pipeline to clean the data deterministically.
+:::
 
-Date strings (e.g. `"2024-06-05"`) converted to proper `Date` objects.  
-`Year` and `Month` extracted as separate columns for time-series grouping.
+<br>
 
-. . .
+:::: columns
+::: {.column width="50%"}
 
-**Step 2 - Remove Unnecessary Columns**
+::: {.fragment}
+**1. Temporal Extraction & Parsing**
+:::
 
-Source URLs, exact log timestamps, and raw employee name lists dropped - reducing noise and improving processing speed.
+::: {.fragment}
+<div style="font-size: 0.85em; color: #1a0909; margin-bottom: 12px;">
+Raw dates arrived as plain character strings (e.g. `"2024-06-05"`). We cast these to proper `Date` objects to enable chronological sorting and accurate interval math.
+</div>
+:::
 
-. . .
+::: {.fragment}
+<div style="font-size: 0.85em; color: #1a0909; margin-bottom: 20px;">
+To support our time-series aggregations, we engineered three new dimensions from each date:
 
-**Step 3 - Standardise Categories**
+- `Year` — integer year for annual grouping  
+- `Month` — integer month for seasonal patterns  
+- `YearMonth` — floor-rounded date for monthly bar charts  
+</div>
+:::
 
-`Industry`, `Country`, and `Stage` converted to `factor` type to prevent silent label-splitting from formatting quirks or typos.
+:::
+::: {.column width="50%"}
 
-. . .
+::: {.fragment}
+**2. Dimensionality Reduction**
+:::
 
-**Step 4 - Handle Missing Data**
+::: {.fragment}
+<div style="font-size: 0.85em; color: #1a0909; margin-bottom: 12px;">
+The raw file contained high-cardinality administrative metadata that added noise without analytical value:
+</div>
+:::
 
-Rows missing **both** `Laid_Off_Count` and `Percentage` were removed. Rows with at least one of the two key values were retained, preserving as much data as possible.
+::: {.fragment}
+| Dropped column | Reason |
+|----------------|--------|
+| `Source` | External URL, not a variable |
+| `Date_Added` | Log timestamp, not event date |
+| `List_of_Employees_Laid_Off` | Free-text list, not parseable |
+:::
+
+::: {.fragment}
+<div style="font-size: 0.85em; color: #1a0909; margin-bottom: 20px;">
+Removing these columns reduces memory overhead and ensures our pipeline operates only on data that directly encodes the story we are telling.
+</div>
+:::
+
+:::
+::::
+
+---
+
+## Data Engineering: Optimisation & Missing Values {.smaller}
+
+<hr>
+
+:::: columns
+::: {.column width="50%"}
+
+::: {.fragment}
+**3. Data Type Optimisation**
+:::
+
+::: {.fragment}
+<div style="font-size: 0.85em; color: #1a0909; margin-bottom: 12px;">
+We cast three categorical string columns to R `factor` type:
+</div>
+
+```r
+mutate(
+  Industry = as.factor(Industry),
+  Country  = as.factor(Country),
+  Stage    = as.factor(Stage)
+)
+```
+:::
+
+::: {.fragment}
+<div style="font-size: 0.85em; color: #1a0909; margin-bottom: 20px;">
+Under the hood, this maps each unique label to an integer index. The benefits are threefold: **faster `ggplot2` rendering**, **prevention of silent duplicate-level errors** caused by trailing whitespace or inconsistent capitalisation, and **correct legend ordering** in our visualisations.
+</div>
+:::
+
+:::
+::: {.column width="50%"}
+
+::: {.fragment}
+**4. Missing Value Handling — Listwise Deletion**
+:::
+
+::: {.fragment}
+<div style="font-size: 0.85em; color: #1a0909; margin-bottom: 12px;">
+We applied a principled two-condition filter:
+</div>
+
+```r
+filter(
+  !is.na(Laid_Off_Count) | !is.na(Percentage)
+)
+```
+:::
+
+::: {.fragment}
+<div style="font-size: 0.85em; color: #1a0909; margin-bottom: 12px;">
+A row is **retained** if it provides at least one quantitative magnitude. A row is **dropped** only if *both* metrics are absent — making it unplotable regardless.
+</div>
+:::
+
+::: {.fragment}
+<div style="font-size: 0.85em; color: #1a0909; margin-bottom: 20px;">
+This avoids the common but wasteful practice of dropping all rows with *any* `NA`, preserving partial records that are still analytically useful.
+</div>
+:::
+
+:::
+::::
+
+::: {.fragment}
+::: {.callout-note}
+All four steps are chained in a single `|>` pipeline in the setup chunk — ensuring the cleaned `layoffs` object is built identically every time the document is rendered.
+:::
+:::
+
+---
+
+## Data Engineering: The Full Pipeline {.smaller}
+
+<hr>
+
+::: {.fragment}
+The complete cleaning pipeline is fully reproducible — no manual edits, no intermediate CSVs.
+:::
+
+::: {.fragment}
+```{r}
+#| label: pipeline-display
+#| echo: true
+#| eval: false
+layoffs <- layoffs_raw |>
+  mutate(Date = as.Date(Date)) |>                           # Step 1a: parse dates
+  mutate(
+    Year      = year(Date),                                 # Step 1b: extract year
+    Month     = month(Date),                                #          extract month
+    YearMonth = floor_date(Date, "month")                   #          floor to month
+  ) |>
+  mutate(
+    Industry = as.factor(Industry),                         # Step 3:  type optimisation
+    Country  = as.factor(Country),
+    Stage    = as.factor(Stage)
+  ) |>
+  filter(!is.na(Laid_Off_Count) | !is.na(Percentage)) |>   # Step 4:  missing value filter
+  select(-Source, -Date_Added, -List_of_Employees_Laid_Off) # Step 2:  drop noise columns
+```
+:::
+
+::: {.fragment}
+**Pipeline verification:**
 
 ```{r}
 #| echo: false
-cat("Rows after cleaning:", nrow(layoffs), "\n")
-cat("Date range:", format(min(layoffs$Date, na.rm=TRUE)), "to", format(max(layoffs$Date, na.rm=TRUE)))
+cat("Rows remaining after deterministic cleaning:", nrow(layoffs), "\n")
+cat("Temporal coverage:", 
+    format(min(layoffs$Date, na.rm = TRUE)), "to", 
+    format(max(layoffs$Date, na.rm = TRUE)), "\n")
+cat("Industries captured:", nlevels(layoffs$Industry), "\n")
+cat("Countries captured: ", nlevels(layoffs$Country))
 ```
+:::
 
+::: {.fragment}
+::: {.callout-note}
+Step ordering matters — `Year`/`Month` extraction must follow date parsing, and `select()` runs last so dropped columns cannot be referenced in earlier steps.
+:::
+:::
 
-## A Glimpse at the Cleaned Data {.smaller}
-
-<hr>
-
-```{r}
-#| echo: true
-#| eval: true
-
-layoffs |>
-  select(Company, Industry, Country, Date, Laid_Off_Count, Stage, Funds_Raised) |>
-  head(8) |>
-  knitr::kable()
-```
 
 
 # Improved Visualization

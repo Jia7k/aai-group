@@ -95,6 +95,7 @@ fed_hikes <- as.Date(c("2022-03-16", "2022-05-04", "2022-06-15",
 | Y-axis | Industry sector |
 | Bubble size | Employees laid off |
 | Colour | Sector grouping |
+| Label | Company names |
 
 
 

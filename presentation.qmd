@@ -365,10 +365,10 @@ Embedding macroeconomic context directly into the chart reduces interpretation e
 ::: {.column width="55%"}
 
 ::: {.fragment}
-**Dataset: Kaggle — Tech Layoffs 2022**
+**Dataset: Kaggle - Tech Layoffs 2022**
 
 <div style="font-size: 0.85em; color: #1a0909; margin-bottom: 12px;">
-Sourced from <a href="https://www.kaggle.com/datasets/theakhilb/layoffs-data-2022" target="_blank">kaggle.com</a> — a crowdsourced compilation of verified layoff announcements drawn from public filings, news reports, and company statements.
+Sourced from <a href="https://www.kaggle.com/datasets/theakhilb/layoffs-data-2022" target="_blank">kaggle.com</a> - a crowdsourced compilation of verified layoff announcements drawn from public filings, news reports, and company statements.
 </div>
 :::
 
@@ -398,25 +398,25 @@ Sourced from <a href="https://www.kaggle.com/datasets/theakhilb/layoffs-data-202
 
 ::: {.fragment}
 <div style="font-size: 0.85em; color: #1a0909; margin-bottom: 10px;">
-**Beyond the original's scope** — the original chart was restricted to U.S. companies with ≥ 100 FTE layoffs. This dataset is global with no minimum threshold, capturing 63 countries and surfacing events the original missed entirely.
+**Beyond the original's scope** - the original chart was restricted to U.S. companies with ≥ 100 FTE layoffs. This dataset is global with no minimum threshold, capturing 63 countries and surfacing events the original missed entirely.
 </div>
 :::
 
 ::: {.fragment}
 <div style="font-size: 0.85em; color: #1a0909; margin-bottom: 10px;">
-**Richer temporal window** — coverage runs from March 2020 to June 2024, giving us a full pre-hike baseline to measure against the Fed's first rate rise in March 2022.
+**Richer temporal window** - coverage runs from March 2020 to June 2024, giving us a full pre-hike baseline to measure against the Fed's first rate rise in March 2022.
 </div>
 :::
 
 ::: {.fragment}
 <div style="font-size: 0.85em; color: #1a0909; margin-bottom: 10px;">
-**Analysis-ready structure** — with 3,043 cleaned records across 31 industries, the dataset is large enough for meaningful aggregation but focused enough to tell a coherent story.
+**Analysis-ready structure** - with 3,043 cleaned records across 31 industries, the dataset is large enough for meaningful aggregation but focused enough to tell a coherent story.
 </div>
 :::
 
 ::: {.fragment}
 ::: {.callout-note}
-Every column in the table above maps directly to at least one chart or analysis in this presentation — no variable was loaded without purpose.
+Every column in the table above maps directly to at least one chart or analysis in this presentation - no variable was loaded without purpose.
 :::
 :::
 
@@ -453,9 +453,9 @@ Raw dates arrived as plain character strings (e.g. `"2024-06-05"`). We cast thes
 <div style="font-size: 0.85em; color: #1a0909; margin-bottom: 20px;">
 To support our time-series aggregations, we engineered three new dimensions from each date:
 
-- `Year` — integer year for annual grouping  
-- `Month` — integer month for seasonal patterns  
-- `YearMonth` — floor-rounded date for monthly bar charts  
+- `Year` - integer year for annual grouping  
+- `Month` - integer month for seasonal patterns  
+- `YearMonth` - floor-rounded date for monthly bar charts  
 </div>
 :::
 
@@ -526,7 +526,7 @@ Under the hood, this maps each unique label to an integer index. The benefits ar
 ::: {.column width="50%"}
 
 ::: {.fragment}
-**4. Missing Value Handling — Listwise Deletion**
+**4. Missing Value Handling - Listwise Deletion**
 :::
 
 ::: {.fragment}
@@ -543,7 +543,7 @@ filter(
 
 ::: {.fragment}
 <div style="font-size: 0.85em; color: #1a0909; margin-bottom: 12px;">
-A row is **retained** if it provides at least one quantitative magnitude. A row is **dropped** only if *both* metrics are absent — making it unplotable regardless.
+A row is **retained** if it provides at least one quantitative magnitude. A row is **dropped** only if *both* metrics are absent - making it unplotable regardless.
 </div>
 :::
 
@@ -558,7 +558,7 @@ This avoids the common but wasteful practice of dropping all rows with *any* `NA
 
 ::: {.fragment}
 ::: {.callout-note}
-All four steps are chained in a single `|>` pipeline in the setup chunk — ensuring the cleaned `layoffs` object is built identically every time the document is rendered.
+All four steps are chained in a single `|>` pipeline in the setup chunk - ensuring the cleaned `layoffs` object is built identically every time the document is rendered.
 :::
 :::
 
@@ -569,7 +569,7 @@ All four steps are chained in a single `|>` pipeline in the setup chunk — ensu
 <hr>
 
 ::: {.fragment}
-The complete cleaning pipeline is fully reproducible — no manual edits, no intermediate CSVs.
+The complete cleaning pipeline is fully reproducible - no manual edits, no intermediate CSVs.
 :::
 
 ::: {.fragment}
@@ -610,7 +610,7 @@ cat("Countries captured: ", nlevels(layoffs$Country))
 
 ::: {.fragment}
 ::: {.callout-note}
-Step ordering matters — `Year`/`Month` extraction must follow date parsing, and `select()` runs last so dropped columns cannot be referenced in earlier steps.
+Step ordering matters - `Year`/`Month` extraction must follow date parsing, and `select()` runs last so dropped columns cannot be referenced in earlier steps.
 :::
 :::
 

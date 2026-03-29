@@ -768,7 +768,7 @@ ggplot(industry_summary, aes(x = Total, y = Industry, fill = Total)) +
   theme(panel.grid.major.y = element_blank())
 ```
 
-> Consumer tech and retail sectors bear the heaviest absolute burden, while sectors like Legal and Infrastructure show comparatively limited exposure.
+> Consumer tech and retail sectors bear the heaviest absolute burden, while sectors like Education and Infrastructure show comparatively limited exposure.
 
 
 ## Layoffs by Company Stage

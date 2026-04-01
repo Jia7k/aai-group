@@ -916,11 +916,11 @@ All source code, cleaned data, and rendered HTML outputs are included in the pro
 
 | Team Member | Contributions |
 |-------------|--------------|
-| **Liew Jia Rong** | Lead on data engineering, responsible for dataset cleaning, transformation and source documentation. |
-| **Alyssa Kwek Li Yun** | Developed the project narrative, synthesized final insights and conclusions. |
-| **Su Myat Nhwe** | Executed the improved visualization and in-depth data analysis, focusing on trend validation. |
-| **Woo Wei Qin** | Outlined the proposed design improvements and supported the early-stage data exploration. |
-| **Teo Xue Ling Sharlene** | Conducted the design critique, evaluating the effectiveness and limitations of the original visualization. |
+| **Liew Jia Rong (2501090)** | Lead on data engineering, responsible for dataset cleaning, transformation and source documentation. |
+| **Alyssa Kwek Li Yun (2403480)** | Developed the project narrative, synthesized final insights and conclusions. |
+| **Su Myat Nhwe (2403062)** | Executed the improved visualization and in-depth data analysis, focusing on trend validation. |
+| **Woo Wei Qin (2402934)** | Outlined the proposed design improvements and supported the early-stage data exploration. |
+| **Teo Xue Ling Sharlene (2503489)** | Conducted the design critique, evaluating the effectiveness and limitations of the original visualization. |
 | **All Members** | Collaborative preparation of the RevealJS presentation and final MP4 recording. |
 
 
